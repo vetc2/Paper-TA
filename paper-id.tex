@@ -1,0 +1,181 @@
+% Harus dimuat terlebih dahulu, digunakan agar file PDF memiliki format karakter yang benar.
+% Untuk informasi lebih lanjut, lihat https://ctan.org/pkg/cmap.
+\RequirePackage{cmap}
+
+% Format dokumen sebagai paper konferensi menggunakan aturan IEEEtran terbaru (v1.8b).
+% Untuk informasi lebih lanjut, lihat http://www.michaelshell.org/tex/ieeetran/.
+\documentclass[a4paper, conference]{IEEEtran}
+
+% Format encoding font dan input menjadi 8-bit UTF-8.
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+
+% Digunakan untuk mengatur margin dokumen.
+\usepackage{textcomp}
+
+% Format bahasa menjadi bahasa indonesia dan inggris.
+\usepackage[indonesian]{babel}
+
+% Digunakan untuk tujuan demonstrasi.
+\usepackage{mwe}
+
+% Digunakan untuk menampilkan font dengan style yang lebih baik.
+\usepackage[zerostyle=b,scaled=.75]{newtxtt}
+
+% Digunakan untuk menampilkan tabel dengan style yang lebih baik.
+\usepackage{booktabs}
+\usepackage[table,xcdraw]{xcolor}
+% Digunakan untuk menampilkan gambar pada dokumen.
+\usepackage{graphicx}
+
+% Digunakan untuk menampilkan potongan kode.
+\usepackage{listings}
+\lstset{
+  basicstyle=\ttfamily,
+  columns=fixed,
+  basewidth=.5em,
+  xleftmargin=0.5cm,
+  captionpos=b
+}
+
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{physics}
+\usepackage{txfonts} % Font times
+\usepackage{lipsum}
+\usepackage{longtable}
+\usepackage{tabularx}
+\usepackage{wrapfig}
+\usepackage{float}
+
+\usepackage{tikz}
+\usepackage{relsize}
+\usetikzlibrary{shapes.geometric, arrows, positioning, decorations.pathreplacing, calc}
+
+\tikzset{
+  person/.style={
+    minimum height=1.6cm, text centered, append after command={
+      \pgfextra{
+        \draw[thick, fill=green!30] (\tikzlastnode.north) circle (0.4cm);
+        \draw[thick] (\tikzlastnode.north) ++(0,-0.4) -- ++(0,-0.8) -- ++(-0.4,-0.4); % Tubuh dan kaki kiri
+        \draw[thick] (\tikzlastnode.north) ++(0,-0.4) -- ++(0,-0.8) -- ++(0.4,-0.4);  % Tubuh dan kaki kanan
+        \draw[thick] (\tikzlastnode.north) ++(0,-0.4) -- ++(-0.4,-0.4); % Tangan kiri
+        \draw[thick] (\tikzlastnode.north) ++(0,-0.4) -- ++(0.4,-0.4);  % Tangan kanan
+      }
+    }
+  },
+  motor/.style={
+    draw, inner sep=0pt, append after command={
+      \pgfextra{
+        \draw[thick] (\tikzlastnode.south west) -- (\tikzlastnode.south east)
+                    -- ++(0.5,1.5) -- ++(-3,0) -- cycle; % Menggambar trapesium manual
+      }
+    }
+  },
+  startstop/.style={ellipse, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=red!30},
+  connector/.style={circle, minimum width=1cm, minimum height=1cm, text centered, draw=black, fill=green!30},
+  io/.style={trapezium, trapezium left angle=70, trapezium right angle=110, minimum width=1.5cm, minimum height=1cm, 
+                text centered, text width=2.5cm, draw=black, fill=blue!30},
+  process/.style={rectangle, minimum width=3cm, minimum height=1cm, text centered, text width=4cm, draw=black, fill=orange!30},
+  decision/.style={diamond, aspect=2, minimum width=3cm, minimum height=1cm, inner sep=0, text centered, text width=3cm, draw=black, fill=yellow!30},
+  arrow/.style={thick,->,>=stealth, rounded corners},
+  layer/.style={rectangle, rounded corners, minimum width=3cm, minimum height=1cm, text centered, align=center, draw=black, fill=blue!30},
+  label/.style={align=right, font=\large, anchor=north},
+  cbs/.style={rectangle, rounded corners, minimum width=3cm, minimum height=1cm, text centered, align=center, draw=black, fill=blue!20},
+  c3k2/.style={rectangle, rounded corners, minimum width=3cm, minimum height=1cm, text centered, align=center, draw=black, fill=yellow!30},
+  upsample/.style={rectangle, rounded corners, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=red!30},
+  concat/.style={rectangle, rounded corners, draw=black, fill=blue!50, minimum width=2cm, text centered, minimum height=1cm},
+  detect/.style={rectangle, rounded corners, minimum width=1.5cm, minimum height=1cm, text centered, draw=black},
+  conv2D/.style={rectangle, rounded corners, minimum width=2cm, minimum height=1cm, text centered, draw=black, fill=magenta!50}
+}
+% Digunakan agar backticks (`) dapat dirender pada PDF.
+% Untuk informasi lebih lanjut, lihat https://tex.stackexchange.com/a/341057/9075.
+\usepackage{upquote}
+
+% Digunakan untuk menyeimbangkan bagian akhir dokumen dengan dua kolom.
+\usepackage{balance}
+
+% Kapitalisasi caption tabel
+\usepackage{caption}
+\captionsetup[table]{
+    justification=centering, % Memusatkan caption
+    labelsep=newline, % Memisahkan label "TABLE 1" dengan judul dengan baris baru
+    textfont={sc}, % Membuat teks menjadi kapital
+    labelfont={sc} % Membuat teks menjadi kapital
+}
+
+
+% Digunakan untuk menampilkan pustaka.
+\usepackage[square,comma,numbers,sort&compress]{natbib}
+
+% Mengubah format ukuran teks pada natbib.
+\renewcommand{\bibfont}{\normalfont\footnotesize}
+
+% Jika melebihi 3 penulis dapat dilakukan linebreakend 
+\makeatletter
+\newcommand{\linebreakand}{%
+  \end{@IEEEauthorhalign}
+  \hfill\mbox{}\par
+  \mbox{}\hfill\begin{@IEEEauthorhalign}
+}
+\makeatother
+
+% Menambah nama penulis ketika menggunakan perintah \citet.
+% Untuk informasi lebih lanjut, lihat https://tex.stackexchange.com/a/76075/9075.
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd{\NAT@test}{\else \NAT@nm}{\else \NAT@hyper@{\NAT@nm}}{}{}
+\makeatother
+
+% Digunakan untuk melakukan linewrap pada pustaka dengan url yang panjang
+% jika terdapat hyphens
+\usepackage[hyphens]{url}
+
+% Digunakan untuk menambah hyperlink pada referensi.
+\usepackage{hyperref}
+
+% Menonaktifkan warna dan bookmark pada hyperref.
+\hypersetup{hidelinks,
+  colorlinks=true,
+  allcolors=black,
+  pdfstartview=Fit,
+  breaklinks=true
+}
+
+% Digunakan untuk membenarkan hyperref pada gambar.
+\usepackage[all]{hypcap}
+
+% Digunakan untuk menampilkan beberapa gambar
+%\usepackage[caption=false,font=footnotesize]{subfig}
+\usepackage{multirow}
+\usepackage{longtable}
+\usepackage{graphicx}
+\usepackage{subcaption}
+\usepackage{stfloats}
+\usepackage{float}
+\input{pustaka/variables.tex}
+\input{pustaka/tanda-hubung.tex}
+
+\begin{document}
+
+\input{deskripsi/judul.tex}
+\input{deskripsi/abstrak.tex}
+
+% Ubah bagian berikut sesuai dengan konten-konten yang akan dimasukkan pada dokumen
+\input{konten/id/1-pendahuluan.tex}
+\input{konten/id/2-tinjauan-pustaka.tex}
+\input{konten/id/3-desain-dan-implementasi.tex}
+\input{konten/id/4-hasil-pembahasan.tex}
+\input{konten/id/5-kesimpulan.tex}
+% Ucapan terima kasih jika ada
+\input{konten/id/6-ucapan-terima-kasih.tex}
+
+% Menampilkan daftar pustaka dengan format IEEE
+\bibliographystyle{IEEEtran}
+\bibliography{pustaka/pustaka.bib}
+
+% Menyeimbangkan bagian akhir di kedua kolom
+\balance
+
+\end{document}

@@ -1,0 +1,267 @@
+% Change the following title and label as desired.
+\section{Literature Review}
+\label{sec:literaturereview}
+
+\subsection{Object Detection}
+\label{subsec:detection}
+
+\emph{Object detection} is a core technology in many modern applications such as surveillance systems, facial recognition, and autonomous vehicles. This technology is used to detect and classify various objects in images or videos. In the context of this research, \emph{object detection} plays a crucial role in detecting the presence of humans so that the autonomous wheelchair can follow the user's movements in real-time. Rapid advancements in \emph{deep learning}, especially with the use of \emph{Convolutional Neural Networks} (CNN), have optimized the capabilities of \emph{object detection}. \emph{CNN}, with its various layers such as convolutional, activation, pooling, and fully connected layers, forms the foundation of many current object detection methods, including \emph{YOLO} (You Only Look Once).
+
+\emph{YOLO}, one of the most popular object detection methods, can perform detection with high speed and accuracy, making it very suitable for real-time applications like autonomous wheelchairs. \emph{YOLOv11}, the latest version of the YOLO family, offers significant improvements in speed and accuracy, as well as additional features such as \emph{YOLO pose} for human pose detection. Additionally, object tracking methods like \emph{DeepSORT} using \emph{Kalman Filter} and \emph{Hungarian Algorithm}, and other technologies like \emph{MediaPipe Pose}, further enhance the ability of autonomous wheelchair systems to track and follow human movements with high precision.
+
+\subsection{Convolutional Neural Network (CNN)}
+\label{subsec:cnn}
+
+\emph{Convolutional Neural Network} (CNN) is a type of artificial neural network specifically designed for processing data with a grid-like structure, such as images. CNN consists of a series of layers that work together to extract and analyze features from input data, making it highly effective in tasks such as image classification, segmentation, and object detection.
+
+\subsection{Convolutional Layer}
+\label{subsubsec:Convolutional Layer}
+
+The convolutional layer is the foundation of CNN that extracts important features from input images. By applying filters learned during training, this layer can recognize basic elements such as edges, textures, and patterns in images. Each filter in the convolutional layer is responsible for detecting specific features, and the results are organized into feature maps that provide a visual representation of the detected elements. The formula for the convolution operation can be written as follows:
+
+\begin{equation}
+  (f * g)(t) = \int_{-\infty}^{\infty} f(\tau)g(t - \tau) \, d\tau
+\end{equation}
+
+\subsubsection{Activation Layer}
+\label{subsubsec:Activation Layer}
+
+The activation layer is a component that adds non-linearity to the network, allowing the model to learn more complex relationships. Activation functions such as \emph{ReLU} (Rectified Linear Unit) are used to activate neurons only if their output is positive, thus reducing computational complexity and speeding up the training process. This non-linearity is crucial for addressing problems involving data with complex structures, such as object detection in images.
+
+\subsubsection{Pooling Layer}
+\label{subsubsec:Pooling Layer}
+
+The pooling layer is used to reduce the dimensionality of feature maps while retaining the most relevant information. Pooling methods such as \emph{max pooling} take the maximum value within each pooling region, which helps the network become more robust to small variations in input, such as changes in scale or object rotation. By reducing the amount of data to be processed, pooling also helps to mitigate overfitting and speed up training. The max pooling operation can be represented as:
+
+\begin{equation}
+  P(x, y) = \max_{i,j \in \mathrm{PoolRegion}} I(x+i, y+j)
+\end{equation}
+
+\subsubsection{Fully Connected Layer}
+\label{subsubsec:Fully Connected Layer}
+
+The fully connected layer is the final layer in CNN that connects every neuron in the previous layer to every neuron in this layer. This layer serves to combine all the features extracted by the convolutional and pooling layers and produce the final output, such as object class predictions. The fully connected layer plays a crucial role in processing the information generated from the previous layers to make the final decision about classification or detection. The basic formula for the fully connected operation can be written as:
+
+\begin{equation}
+  y = f\left(\sum_{i=1}^{n} w_i x_i + b\right)
+\end{equation}
+
+Where \( w_i \) is the weight, \( x_i \) is the input, \( b \) is the bias, and \( f \) is the activation function.
+
+\subsection{Pose Estimation}
+\label{subsec:Pose Estimation}
+
+\emph{Pose estimation} is a technique for identifying and tracking the position of the human body in images or videos. This technique typically involves detecting keypoints on the body, such as joints or limb extremities, which are used to model an individual's posture or movement. \emph{Pose estimation} is crucial in various applications, such as sports analysis, animation, and human-machine interaction.
+
+In this research, \emph{pose estimation} is used to ensure that the user's movements can be followed with high accuracy. By utilizing \emph{pose estimation}, the system can understand the direction and intensity of the user's movements, allowing the wheelchair to respond appropriately and efficiently.
+
+\subsection{YOLO (You Only Look Once)}
+\label{subsec:YOLO}
+
+\emph{YOLO}, developed by Joseph Redmon, introduces an \emph{End-to-End} approach for real-time object detection. The name \emph{YOLO}, which stands for \emph{"You Only Look Once"}, reflects the model's ability to complete the detection task with a single network pass. This is different from previous approaches that used sliding window techniques requiring classifiers to run multiple times on each image, or other methods that split the task into two separate steps: first, identifying regions that might contain objects (\emph{region proposals}), and second, running a classifier on the identified regions. Additionally, \emph{YOLO} uses a simpler output by employing regression to predict detection results, unlike methods such as \emph{Fast R-CNN} that separate the task into two outputs: classification probabilities and bounding box regression.
+
+\subsubsection{YOLOv8}
+\label{subsubsec:YOLOv8}
+
+\emph{YOLOv8} is one of the highly efficient object detection models, combining high speed with relatively high accuracy. This architecture consists of several main layers: \emph{Backbone}, \emph{Neck}, and \emph{Head}. The \emph{Backbone} is responsible for extracting basic features from the input image. Then, the \emph{Neck} combines information from various layers to produce richer feature representations, which are then processed by the \emph{Head} to generate predictions for bounding boxes, class labels, and confidence scores.
+
+\begin{figure}[H] 
+  \centering 
+  \includegraphics[scale=0.5]{images/YoloV8Architecture.jpg} 
+  \caption{YOLOv8 Architecture.} 
+  \label{fig:YOLOv8Architecture} 
+\end{figure}
+
+The figure shows the complete architecture of \emph{YOLOv8}, starting from the input image with a resolution of 640x640x3, which is processed through a series of convolutional layers in the \emph{Backbone} to extract important features. These features are then passed through the \emph{Neck}, which combines and processes information from various resolution levels, producing a rich multi-scale representation. Finally, the \emph{Head} is responsible for making the final predictions, such as bounding boxes, class labels, and confidence scores.
+
+\emph{YOLOv8} predicts bounding boxes using a combination of center coordinates \((bx, by)\), bounding box dimensions \((bw, bh)\), and confidence score \(p_c\). The formula for calculating the bounding box coordinates based on the network output is:
+
+\begin{equation}
+  \begin{array}{c}
+  bx = \sigma(t_x) + c_x\\
+  bw = p_w e^{t_w}\\
+  by = \sigma(t_y) + c_y\\ 
+  bh = p_h e^{t_h}
+  \end{array}
+\end{equation}
+
+Where \(t_x, t_y, t_w, t_h\) are the outputs of the neural network model, \(\sigma\) is the sigmoid function, \(c_x, c_y\) are the grid cell coordinates, and \(p_w, p_h\) are the anchor box scales.
+
+The loss function in \emph{YOLOv8} consists of several main components that measure the difference between the model's predictions and the ground truth, balancing the importance of coordinate predictions, confidence scores, and object classification. The formula for the loss function is:
+
+\begin{equation}
+  \begin{array}{c}
+  \mathbf{Loss} = \lambda_{\mathrm{coord}} \sum_{i=0}^{S^2} \sum_{j=0}^{B} \mathbb{1}_{ij}^{\mathrm{obj}} \left[ (bx_i - \hat{bx}_i)^2 + (by_i - \hat{by}_i)^2 \right] \\[10pt]
+  + \lambda_{\mathrm{coord}} \sum_{i=0}^{S^2} \sum_{j=0}^{B} \mathbb{1}_{ij}^{\mathrm{obj}} \left[ (\sqrt{bw_i} - \sqrt{\hat{bw}_i})^2 + (\sqrt{bh_i} - \sqrt{\hat{bh}_i})^2 \right] \\[10pt]
+  + \sum_{i=0}^{S^2} \sum_{j=0}^{B} \mathbb{1}_{ij}^{\mathrm{obj}} (C_i - \hat{C}_i)^2 + \lambda_{\mathrm{noobj}} \sum_{i=0}^{S^2} \sum_{j=0}^{B} \mathbb{1}_{ij}^{\mathrm{noobj}} (C_i - \hat{C}_i)^2 \\[10pt]
+  + \sum_{i=0}^{S^2} \mathbb{1}_{i}^{\mathrm{obj}} \sum_{c \in \mathrm{classes}} (p_i(c) - \hat{p}_i(c))^2
+  \end{array}
+\end{equation}
+
+In this equation, \(S\) is the grid size, \(B\) is the number of bounding boxes per grid cell, \(\mathbb{1}_{ij}^{\mathrm{obj}}\) is an indicator that bounding box j in cell i predicts an object, and \(\lambda_{\mathrm{coord}}\) and \(\lambda_{\mathrm{noobj}}\) are hyperparameters that control the importance of each loss component.
+
+\subsubsection{YOLOv8 Pose}
+\label{subsubsec: YOLOv8 Pose}
+
+\emph{YOLOv8 Pose} is a variant of \emph{YOLOv8} specifically designed for pose estimation tasks. By combining the speed of \emph{YOLO} with precise pose detection capabilities, \emph{YOLOv8 Pose} can detect keypoints on the human body in real-time. Each bounding box not only contains information about the location and size of the object but also the coordinates of keypoints related to human pose (e.g., shoulders, elbows, knees, etc.).
+
+\subsubsection{YOLOv10}
+\label{subsubsec:YOLOv10}
+
+\emph{YOLOv10} is a further development of \emph{YOLOv8}, with several improvements in efficiency and object detection accuracy. Like \emph{YOLOv8}, the \emph{YOLOv10} architecture consists of \emph{Backbone}, \emph{Neck}, and \emph{Head}, but with the addition of new modules such as \emph{Path Aggregation Network} (PSA) and \emph{Improved Convolutional Block} (C2fCIB).
+
+The \emph{YOLOv10} architecture was developed by introducing several key enhancements from the foundations of \emph{YOLOv8}. The \emph{YOLOv10 Backbone} still functions as the main feature extractor but is enhanced with the \emph{SCD} (Squeeze-and-Excitation Convolutional Downsample) and \emph{C2fCIB} modules, which allow for more efficient information propagation and redundancy reduction. The newly added \emph{PSA} (Path Aggregation Network) module in the \emph{Neck} helps combine information from various paths within the network, enriching feature representation for multi-scale detection.
+
+\subsubsection{YOLOv11}
+\label{subsubsec:YOLOv11}
+
+\emph{YOLOv11} is the latest breakthrough in the series of real-time object detectors from Ultralytics. Building on the advancements of its predecessors, \emph{YOLOv11} introduces significant improvements to its architecture, making it a powerful and adaptive solution for various computer vision applications. Ultralytics has introduced various enhancements in object detection and deep learning architecture. The improved \emph{backbone} and \emph{neck} architectures enhance feature extraction, enabling more accurate object detection and handling of more complex tasks.
+
+Efficiency and speed are also sharpened through a refined architecture and a more optimal training pipeline, resulting in faster processing without sacrificing accuracy and performance. \emph{YOLOv11} supports implementation on various platforms, from edge devices, cloud platforms, to systems with NVIDIA GPUs, making it flexible for use in different environments. Additionally, \emph{YOLOv11} supports a variety of tasks, including object detection, instance segmentation, image classification, pose estimation, and oriented object detection (OBB). One of the main updates in the \emph{YOLOv11} architecture is the introduction of the \emph{C3K2} module, which replaces the \emph{C2F} module in \emph{YOLOv8}, as well as the addition of the \emph{C2PSA} module after the \emph{SPPF} module to further enhance detection capabilities.
+
+\begin{figure}[H]
+  \centering
+  \resizebox{1\linewidth}{!}{
+    \input{images/tex/architecture-yolov11.tex}
+  }
+  \caption{YOLOv11 Architecture}
+  \label{fig:YOLOv11Architecture}
+\end{figure}
+
+The \emph{C3K2} architecture is a modified version of the \emph{C2F} module. The main difference lies in the \emph{c3k} parameter configuration. When \emph{c3k} is set to \texttt{False}, the \emph{C3K2} module behaves like the \emph{C2F} module, using the standard bottleneck structure. Conversely, when \emph{c3k} is set to \texttt{True}, the bottleneck module is replaced by the \emph{C3} module. This change can be seen in the following figure.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[scale=0.35]{images/C3k2.jpg}
+  \caption{Bottleneck, C3, C2F, and C3K2 Modules}
+  \label{fig:c3k2}
+\end{figure}
+
+The input features are transformed in the feedforward layer into a higher-dimensional space, allowing complex non-linear relationships to be captured more stably.
+
+\subsection{MediaPipe}
+\label{subsec:MediaPipe}
+
+\emph{MediaPipe} is an open-source framework developed by Google for building efficient media processing pipelines, including image and video processing. This framework provides various modules that can be utilized for applications such as face detection, hand tracking, and pose estimation.
+
+The \emph{MediaPipe} framework uses the concept of a "graph," where each node in the graph functions as a "calculator" that performs specific tasks, such as object detection, pose tracking, or image segmentation. The configuration of these nodes can be customized through \emph{GraphConfig}, which defines the topology and functionality of the entire system.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[scale=0.35]{images/MediaPipe3D.png}
+  \caption{MediaPipe 3D}
+  \label{fig:MediaPipe3D}
+\end{figure}
+
+One of the most well-known uses of \emph{MediaPipe} is human pose estimation using the \emph{MediaPipe Pose} module. This technique combines 2D pose estimation with a more complex humanoid model and uses optimization methods to calculate joint angles in 3D poses. This approach is effective in addressing depth ambiguity issues in 3D pose estimation and can work in real-time. The resulting 3D pose visualization shows each body joint as points and connecting lines between joints, providing a clear picture of the body's position and orientation in 3D space.
+
+\subsubsection{MediaPipe Pose}
+\label{subsubsec:MediaPipe Pose}
+
+\emph{MediaPipe Pose} is a module within \emph{MediaPipe} specifically designed to detect and track human poses in real-time. Using advanced machine learning models, \emph{MediaPipe Pose} can identify up to 33 reference points on the human body, allowing the system to understand and respond to user movements quickly and accurately.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[scale=0.5]{images/mp_pose.jpg}
+  \caption{MediaPipe Pose}
+  \label{fig:mp_pose}
+\end{figure}
+
+\subsection{Classification Performance}
+\label{subsec:Classification Performance}
+
+\emph{Classification performance} refers to the ability of a model to classify input data into the correct categories. The classification process requires evaluation to assess the effectiveness of the developed model, usually using a test dataset. One commonly used evaluation approach in the context of classification is the \emph{confusion matrix}, which provides a visualization of the model's performance in categorizing data accurately.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[scale=0.5]{images/ConfusionMatrix.jpg}
+  \caption{Confusion Matrix.}
+  \label{fig:confusion}
+\end{figure}
+
+The \emph{confusion matrix} is used to evaluate the performance of a binary classification model and displays four types of prediction results: \emph{True Positive} (TP), \emph{False Negative} (FN), \emph{False Positive} (FP), and \emph{True Negative} (TN). TP occurs when the model correctly predicts the positive class, while FN occurs when the model incorrectly predicts the negative class when it should be positive (also known as \emph{Type II Error}). FP occurs when the model incorrectly predicts the positive class when it should be negative (also known as \emph{Type I Error}), and TN occurs when the model correctly predicts the negative class.
+
+\subsection{Evaluation Metrics}
+\label{subsec:Evaluation Metrics}
+
+Evaluation metrics serve as the basis for understanding and comparing the effectiveness of various algorithms and different scenarios. Through careful evaluation, accurate comparisons between different object detection techniques can be made, and the level of accuracy achieved can be properly assessed. This is crucial in selecting the most suitable algorithm for a specific detection task. Metrics such as \emph{accuracy}, \emph{precision}, and \emph{recall} are used to evaluate the effectiveness of a model in correctly detecting and identifying objects. Implementing these metrics is necessary to determine the most efficient model.
+
+Additionally, accuracy analysis provides significant quantitative insights into the performance of object detection algorithms, as well as further details on the algorithm's ability to produce accurate detections. Errors identified through evaluation metrics are an important step in detection research, such as in the case of smoke detection. This identification facilitates understanding potential errors in the algorithm, which can then lead to improvements and enhancements in detection methods. Evaluation metrics are also utilized to support the optimization of algorithm hyperparameters.
+
+In this research, various evaluation metrics such as \emph{precision}, \emph{recall}, and \emph{Mean Average Precision} (mAP) have been applied. By combining these evaluation methods, this research is designed to present a comprehensive analysis of the performance of the reviewed object detection algorithms. The explanation of the basic concepts of evaluation metrics is outlined as follows:
+
+\subsubsection{Precision}
+\label{subsubsec:precision}
+
+\emph{Precision} is one of the main metrics used to measure how accurately the model's predictions match the detected objects. This metric indicates the proportion of true positive predictions (\emph{True Positive}) compared to the total positive predictions, both true (\emph{True Positive}) and false (\emph{False Positive}), expressed by the following equation:
+\begin{equation}
+  \mathrm{Precision} = \frac{TP}{TP + FP}
+\end{equation}
+
+Where \(TP\) (\emph{True Positive}): Correct prediction, i.e., detection of objects that match the ground truth, and \(FP\) (\emph{False Positive}): Incorrect prediction, i.e., detection of objects that do not match the ground truth.
+
+\emph{Precision} is very useful in situations where false positive predictions need to be minimized. For example, in autonomous wheelchair applications, incorrect detection of humans can lead to dangerous actions, so \emph{precision} must be maintained at a high value.
+
+\emph{Precision} is usually combined with other metrics, such as \emph{recall}, to provide a more complete picture of the model's performance.
+
+\subsubsection{Recall}
+\label{subsubsec:recall}
+
+\emph{Recall} or sensitivity measures the model's ability to detect all objects present in an image or video. \emph{Recall} emphasizes how many objects that actually exist in the data (ground truth) are successfully detected by the model with the following equation:
+
+\begin{equation}
+  \mathrm{Recall} = \frac{TP}{TP + FN}
+\end{equation}
+
+Where \(TP\) (\emph{True Positive}): Correct prediction, i.e., objects that are correctly detected, and \(FN\) (\emph{False Negative}): Incorrect prediction, i.e., objects that exist but are not detected.
+
+This metric is important when errors in failing to detect objects (\emph{false negative}) need to be minimized. In the context of developing an autonomous wheelchair, \emph{recall} is crucial because objects such as humans must always be detected to ensure the wheelchair can follow accurately.
+
+\textbf{\emph{Precision and Recall Trade-off:}} In many cases, \emph{precision} and \emph{recall} have an inverse relationship. If the model is too conservative in making predictions, \emph{precision} will be high, but \emph{recall} will be low. Conversely, if the model is too lenient in detecting objects, \emph{recall} will be high, but \emph{precision} will decrease. Therefore, a balance between \emph{precision} and \emph{recall} is needed, which is usually expressed through other metrics such as \emph{F1-score}.
+
+\subsubsection{Mean Average Precision (mAP)}
+\label{subsubsec:mAP}
+
+\emph{Mean Average Precision} (mAP) is a comprehensive metric used to measure the overall performance of an object detection model. \emph{mAP} is the average of the \emph{average precision} (AP) across all classes in the dataset.
+
+\begin{equation}
+  \mathrm{AP} = \int_0^1 P(r) \, dr
+\end{equation}
+
+Where \(P(r)\) is the \emph{Precision} as a function of \emph{recall} and \(dr\) is the differential of \emph{recall}.
+
+AP is calculated by finding the area under the \emph{precision-recall} (PR) curve for each class. After calculating the AP for all classes, the average of these values gives the \emph{mAP}.
+
+\begin{equation}
+  \mathrm{mAP} = \frac{1}{N} \sum_{i=1}^{N} \mathrm{AP}_i
+\end{equation}
+
+Where \(N\) is the number of classes in the dataset and \(AP_i\) is the \emph{average precision} for the i-th class.
+
+\emph{mAP} provides a broader view of the object detector's performance, as this metric considers both \emph{precision} and \emph{recall} simultaneously. The \emph{mAP} value will serve as a reference for evaluating the system's performance, such as detecting various objects like humans, obstacles, and the surrounding environment.
+
+\subsubsection{Intersection over Union (IoU)}
+\label{subsubsec:IoU}
+
+\emph{Intersection over Union} (\emph{IoU}) is a metric used to evaluate the accuracy of object position detection performed by the model in image processing. The intersection area between the detection box generated by the model and the reference box, known as the \emph{Ground Truth}, is calculated to assess the model's performance. This ratio is obtained by comparing the area of overlap between the two boxes to the total area of their union. If the two boxes are treated as a single entity, \emph{IoU} provides a score indicating how accurately the model predicts the actual location of the object. The \emph{IoU} value increases as the proportion of the intersection area relative to the total union area increases.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[scale=0.15]{images/IoU_bbox.jpg}
+  \caption{Intersection over Union.}
+  \label{fig:IoU_bbox}
+\end{figure}
+
+The performance of the object detection model is evaluated by comparing the overlapping area between the predicted bounding box and the ground truth bounding box. The \emph{IoU} value ranges from 0 to 1, where a value closer to 1 indicates a higher level of accuracy in detecting and locating objects.
+
+During the evaluation process, the bounding box generated by the model is compared to the ground truth bounding box, which is manually determined as the actual location of the object in the image. The \emph{IoU} is calculated by dividing the area of overlap between the two bounding boxes by the total area of their union. The following equation is used to calculate the \emph{IoU} value:
+
+\begin{equation}
+  IoU = \frac{\left |A \bigcap B \right |}{\left | A \bigcup B \right |}
+\end{equation}
+
+\emph{IoU} is chosen as a measurement tool because of its ability to provide a clear assessment of how accurately the model identifies and bounds objects under various conditions, including variations in size, orientation, and context of objects in the image. A higher \emph{IoU} value indicates that the model can reliably detect and identify objects with a high level of precision.
+
+\subsection{Literature Review on BoT-SORT}
+
+BoT-SORT is a multi-object tracking (MOT) method developed with a tracking-by-detection approach. Essentially, this method leverages several techniques from previous algorithms, particularly ByteTrack, to provide more advanced tracking. Improvements in this method aim to enhance tracking performance in both dynamic and static environments by refining several key components, which will be detailed as follows \cite{aharon2022botsortrobustassociationsmultipedestrian}:
