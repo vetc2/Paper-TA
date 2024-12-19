@@ -10,8 +10,16 @@
 \subsection{Convolutional Neural Network (CNN)}
 \label{subsec:cnn}
 
-\emph{Convolutional Neural Network} (CNN) is a type of artificial neural network specifically designed for processing data with a grid-like structure, such as images. CNN consists of a series of layers that work together to extract and analyze features from input data, making it highly effective in tasks such as image classification, segmentation, and object detection.
+\emph{Convolutional Neural Network} (CNN) is a type of artificial neural network specifically designed for processing data with a grid-like structure, such as images. CNN consists of a series of layers that work together to extract and analyze features from input data, making it highly effective in tasks such as image classification, segmentation, and object detection \cite{oshea2015cnn}.
 
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=0.45\textwidth]{gambar/tex/simplecnn.pdf}
+  \caption{An simple CNN architecture.}
+  \label{fig:simplecnn}
+  \end{figure}
+
+\vspace{5pt}
 \subsubsection{Convolutional Layer}
 \label{subsubsec:Convolutional Layer}
 
@@ -21,11 +29,13 @@ The convolutional layer is the foundation of CNN that extracts important feature
   (f * g)(t) = \int_{-\infty}^{\infty} f(\tau)g(t - \tau) \, d\tau
 \end{equation}
 
+\vspace{5pt}
 \subsubsection{Activation Layer}
 \label{subsubsec:Activation Layer}
 
 The activation layer is a component that adds non-linearity to the network, allowing the model to learn more complex relationships. Activation functions such as \emph{ReLU} (Rectified Linear Unit) are used to activate neurons only if their output is positive, thus reducing computational complexity and speeding up the training process. This non-linearity is crucial for addressing problems involving data with complex structures, such as object detection in images.
 
+\vspace{5pt}
 \subsubsection{Pooling Layer}
 \label{subsubsec:Pooling Layer}
 
@@ -35,6 +45,7 @@ The pooling layer is used to reduce the dimensionality of feature maps while ret
   P(x, y) = \max_{i,j \in \mathrm{PoolRegion}} I(x+i, y+j)
 \end{equation}
 
+\vspace{5pt}
 \subsubsection{Fully Connected Layer}
 \label{subsubsec:Fully Connected Layer}
 
@@ -56,6 +67,7 @@ Where \( w_i \) is the weight, \( x_i \) is the input, \( b \) is the bias, and 
 
 \emph{YOLO}, developed by Joseph Redmon, introduces an \emph{End-to-End} approach for real-time object detection. The name \emph{YOLO}, which stands for \emph{"You Only Look Once"}, reflects the model's ability to complete the detection task with a single network pass. This is different from previous approaches that used sliding window techniques requiring classifiers to run multiple times on each image, or other methods that split the task into two separate steps: first, identifying regions that might contain objects (\emph{region proposals}), and second, running a classifier on the identified regions. Additionally, \emph{YOLO} uses a simpler output by employing regression to predict detection results, unlike methods such as \emph{Fast R-CNN} that separate the task into two outputs: classification probabilities and bounding box regression.
 
+\vspace{5pt}
 \subsubsection{YOLOv8}
 \label{subsubsec:YOLOv8}
 
@@ -63,7 +75,7 @@ Where \( w_i \) is the weight, \( x_i \) is the input, \( b \) is the bias, and 
 
 \begin{figure}[H] 
   \centering 
-  \includegraphics[scale=0.4]{gambar/YoloV8Architecture.jpg} 
+  \includegraphics[scale=0.45]{gambar/YoloV8Architecture.jpg} 
   \caption{YOLOv8 Architecture.} 
   \label{fig:YOLOv8Architecture} 
 \end{figure}
@@ -96,11 +108,13 @@ The loss function in \emph{YOLOv8} consists of several main components that meas
 
 In this equation, \(S\) is the grid size, \(B\) is the number of bounding boxes per grid cell, \(\mathbb{1}_{ij}^{\mathrm{obj}}\) is an indicator that bounding box j in cell i predicts an object, and \(\lambda_{\mathrm{coord}}\) and \(\lambda_{\mathrm{noobj}}\) are hyperparameters that control the importance of each loss component.
 
+\vspace{5pt}
 \subsubsection{YOLOv8 Pose}
 \label{subsubsec: YOLOv8 Pose}
 
 \emph{YOLOv8 Pose} is a variant of \emph{YOLOv8} specifically designed for pose estimation tasks. By combining the speed of \emph{YOLO} with precise pose detection capabilities, \emph{YOLOv8 Pose} can detect keypoints on the human body in real-time. Each bounding box not only contains information about the location and size of the object but also the coordinates of keypoints related to human pose (e.g., shoulders, elbows, knees, etc.).
 
+\vspace{5pt}
 \subsubsection{YOLOv10}
 \label{subsubsec:YOLOv10}
 
@@ -108,6 +122,7 @@ In this equation, \(S\) is the grid size, \(B\) is the number of bounding boxes 
 
 The \emph{YOLOv10} architecture was developed by introducing several key enhancements from the foundations of \emph{YOLOv8}. The \emph{YOLOv10 Backbone} still functions as the main feature extractor but is enhanced with the \emph{SCD} (Squeeze-and-Excitation Convolutional Downsample) and \emph{C2fCIB} modules, which allow for more efficient information propagation and redundancy reduction. The newly added \emph{PSA} (Path Aggregation Network) module in the \emph{Neck} helps combine information from various paths within the network, enriching feature representation for multi-scale detection.
 
+\vspace{5pt}
 \subsubsection{YOLOv11}
 \label{subsubsec:YOLOv11}
 
@@ -151,6 +166,7 @@ The \emph{MediaPipe} framework uses the concept of a "graph," where each node in
 
 One of the most well-known uses of \emph{MediaPipe} is human pose estimation using the \emph{MediaPipe Pose} module. This technique combines 2D pose estimation with a more complex humanoid model and uses optimization methods to calculate joint angles in 3D poses. This approach is effective in addressing depth ambiguity issues in 3D pose estimation and can work in real-time. The resulting 3D pose visualization shows each body joint as points and connecting lines between joints, providing a clear picture of the body's position and orientation in 3D space.
 
+\vspace{5pt}
 \subsubsection{MediaPipe Pose}
 \label{subsubsec:MediaPipe Pose}
 
@@ -186,6 +202,7 @@ Additionally, accuracy analysis provides significant quantitative insights into 
 
 In this research, various evaluation metrics such as \emph{precision}, \emph{recall}, and \emph{Mean Average Precision} (mAP) have been applied. By combining these evaluation methods, this research is designed to present a comprehensive analysis of the performance of the reviewed object detection algorithms. The explanation of the basic concepts of evaluation metrics is outlined as follows:
 
+\vspace{5pt}
 \subsubsection{Precision}
 \label{subsubsec:precision}
 
@@ -200,6 +217,7 @@ Where \(TP\) (\emph{True Positive}): Correct prediction, i.e., detection of obje
 
 \emph{Precision} is usually combined with other metrics, such as \emph{recall}, to provide a more complete picture of the model's performance.
 
+\vspace{5pt}
 \subsubsection{Recall}
 \label{subsubsec:recall}
 
@@ -215,6 +233,7 @@ This metric is important when errors in failing to detect objects (\emph{false n
 
 \textbf{\emph{Precision and Recall Trade-off:}} In many cases, \emph{precision} and \emph{recall} have an inverse relationship. If the model is too conservative in making predictions, \emph{precision} will be high, but \emph{recall} will be low. Conversely, if the model is too lenient in detecting objects, \emph{recall} will be high, but \emph{precision} will decrease. Therefore, a balance between \emph{precision} and \emph{recall} is needed, which is usually expressed through other metrics such as \emph{F1-score}.
 
+\vspace{5pt}
 \subsubsection{Mean Average Precision (mAP)}
 \label{subsubsec:mAP}
 
@@ -236,6 +255,7 @@ Where \(N\) is the number of classes in the dataset and \(AP_i\) is the \emph{av
 
 \emph{mAP} provides a broader view of the object detector's performance, as this metric considers both \emph{precision} and \emph{recall} simultaneously. The \emph{mAP} value will serve as a reference for evaluating the system's performance, such as detecting various objects like humans, obstacles, and the surrounding environment.
 
+\vspace{5pt}
 \subsubsection{Intersection over Union (IoU)}
 \label{subsubsec:IoU}
 
@@ -262,6 +282,7 @@ During the evaluation process, the bounding box generated by the model is compar
 
 BoT-SORT is a multi-object tracking (MOT) method developed with a tracking-by-detection approach. Essentially, this method leverages several techniques from previous algorithms, particularly ByteTrack, to provide more advanced tracking. Improvements in this method aim to enhance tracking performance in both dynamic and static environments by refining several key components, which will be detailed as follows \cite{aharon2022botsortrobustassociationsmultipedestrian}:
 
+\vspace{5pt}
 \subsubsection{Kalman Filter}
 \label{subsubsec:Kalman Filter}
 
@@ -307,6 +328,7 @@ With these changes, the bounding box predictions are more accurate compared to t
 
 Visualization of the bounding box shape compared to the widely used Kalman filter~\cite{wojke2017simple} (dashed blue) and the proposed Kalman filter (green). It is evident that the width of the bounding box generated by the proposed Kalman filter is more appropriate for the object. The dashed blue bounding box cuts off part of the object's legs (in red), while the green bounding box reaches the desired width.
 
+\vspace{5pt}
 \subsubsection{\emph{Camera Motion Compensation} (CMC)}
 \label{subsubsec:Camera Motion Compensation}
 
@@ -370,6 +392,7 @@ Visualization of bounding box (BB) predictions from tracklets is used for associ
   \label{fig:cmc}
 \end{figure}
 
+\vspace{5pt}
 \subsubsection{IoU - Re-ID Fusion}
 \label{subsubsec:IoU - Re-ID Fusion}
 
