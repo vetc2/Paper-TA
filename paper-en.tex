@@ -15,7 +15,7 @@
 \usepackage{textcomp}
 
 % Format bahasa menjadi bahasa indonesia dan inggris.
-\usepackage[indonesian]{babel}
+% \usepackage[indonesian]{babel}
 
 % Digunakan untuk tujuan demonstrasi.
 \usepackage{mwe}
@@ -39,8 +39,56 @@
   captionpos=b
 }
 
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{physics}
+\usepackage{txfonts} % Font times
+\usepackage{lipsum}
+\usepackage{longtable}
 \usepackage{tabularx}
 \usepackage{wrapfig}
+\usepackage{float}
+
+\usepackage{tikz}
+\usepackage{relsize}
+\usetikzlibrary{shapes.geometric, arrows, positioning, decorations.pathreplacing, calc}
+
+\tikzset{
+  person/.style={
+    minimum height=1.6cm, text centered, append after command={
+      \pgfextra{
+        \draw[thick, fill=green!30] (\tikzlastnode.north) circle (0.4cm);
+        \draw[thick] (\tikzlastnode.north) ++(0,-0.4) -- ++(0,-0.8) -- ++(-0.4,-0.4); % Tubuh dan kaki kiri
+        \draw[thick] (\tikzlastnode.north) ++(0,-0.4) -- ++(0,-0.8) -- ++(0.4,-0.4);  % Tubuh dan kaki kanan
+        \draw[thick] (\tikzlastnode.north) ++(0,-0.4) -- ++(-0.4,-0.4); % Tangan kiri
+        \draw[thick] (\tikzlastnode.north) ++(0,-0.4) -- ++(0.4,-0.4);  % Tangan kanan
+      }
+    }
+  },
+  motor/.style={
+    draw, inner sep=0pt, append after command={
+      \pgfextra{
+        \draw[thick] (\tikzlastnode.south west) -- (\tikzlastnode.south east)
+                    -- ++(0.5,1.5) -- ++(-3,0) -- cycle; % Menggambar trapesium manual
+      }
+    }
+  },
+  startstop/.style={ellipse, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=red!30},
+  connector/.style={circle, minimum width=1cm, minimum height=1cm, text centered, draw=black, fill=green!30},
+  io/.style={trapezium, trapezium left angle=70, trapezium right angle=110, minimum width=1.5cm, minimum height=1cm, 
+                text centered, text width=2.5cm, draw=black, fill=blue!30},
+  process/.style={rectangle, minimum width=3cm, minimum height=1cm, text centered, text width=4cm, draw=black, fill=orange!30},
+  decision/.style={diamond, aspect=2, minimum width=3cm, minimum height=1cm, inner sep=0, text centered, text width=3cm, draw=black, fill=yellow!30},
+  arrow/.style={thick,->,>=stealth, rounded corners},
+  layer/.style={rectangle, rounded corners, minimum width=3cm, minimum height=1cm, text centered, align=center, draw=black, fill=blue!30},
+  label/.style={align=right, font=\large, anchor=north},
+  cbs/.style={rectangle, rounded corners, minimum width=3cm, minimum height=1cm, text centered, align=center, draw=black, fill=blue!20},
+  c3k2/.style={rectangle, rounded corners, minimum width=3cm, minimum height=1cm, text centered, align=center, draw=black, fill=yellow!30},
+  upsample/.style={rectangle, rounded corners, minimum width=3cm, minimum height=1cm, text centered, draw=black, fill=red!30},
+  concat/.style={rectangle, rounded corners, draw=black, fill=blue!50, minimum width=2cm, text centered, minimum height=1cm},
+  detect/.style={rectangle, rounded corners, minimum width=1.5cm, minimum height=1cm, text centered, draw=black},
+  conv2D/.style={rectangle, rounded corners, minimum width=2cm, minimum height=1cm, text centered, draw=black, fill=magenta!50}
+}
 % Digunakan agar backticks (`) dapat dirender pada PDF.
 % Untuk informasi lebih lanjut, lihat https://tex.stackexchange.com/a/341057/9075.
 \usepackage{upquote}

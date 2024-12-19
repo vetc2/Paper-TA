@@ -7,14 +7,12 @@
 
 \emph{Object detection} is a core technology in many modern applications such as surveillance systems, facial recognition, and autonomous vehicles. This technology is used to detect and classify various objects in images or videos. In the context of this research, \emph{object detection} plays a crucial role in detecting the presence of humans so that the autonomous wheelchair can follow the user's movements in real-time. Rapid advancements in \emph{deep learning}, especially with the use of \emph{Convolutional Neural Networks} (CNN), have optimized the capabilities of \emph{object detection}. \emph{CNN}, with its various layers such as convolutional, activation, pooling, and fully connected layers, forms the foundation of many current object detection methods, including \emph{YOLO} (You Only Look Once).
 
-\emph{YOLO}, one of the most popular object detection methods, can perform detection with high speed and accuracy, making it very suitable for real-time applications like autonomous wheelchairs. \emph{YOLOv11}, the latest version of the YOLO family, offers significant improvements in speed and accuracy, as well as additional features such as \emph{YOLO pose} for human pose detection. Additionally, object tracking methods like \emph{DeepSORT} using \emph{Kalman Filter} and \emph{Hungarian Algorithm}, and other technologies like \emph{MediaPipe Pose}, further enhance the ability of autonomous wheelchair systems to track and follow human movements with high precision.
-
 \subsection{Convolutional Neural Network (CNN)}
 \label{subsec:cnn}
 
 \emph{Convolutional Neural Network} (CNN) is a type of artificial neural network specifically designed for processing data with a grid-like structure, such as images. CNN consists of a series of layers that work together to extract and analyze features from input data, making it highly effective in tasks such as image classification, segmentation, and object detection.
 
-\subsection{Convolutional Layer}
+\subsubsection{Convolutional Layer}
 \label{subsubsec:Convolutional Layer}
 
 The convolutional layer is the foundation of CNN that extracts important features from input images. By applying filters learned during training, this layer can recognize basic elements such as edges, textures, and patterns in images. Each filter in the convolutional layer is responsible for detecting specific features, and the results are organized into feature maps that provide a visual representation of the detected elements. The formula for the convolution operation can be written as follows:
@@ -51,9 +49,7 @@ Where \( w_i \) is the weight, \( x_i \) is the input, \( b \) is the bias, and 
 \subsection{Pose Estimation}
 \label{subsec:Pose Estimation}
 
-\emph{Pose estimation} is a technique for identifying and tracking the position of the human body in images or videos. This technique typically involves detecting keypoints on the body, such as joints or limb extremities, which are used to model an individual's posture or movement. \emph{Pose estimation} is crucial in various applications, such as sports analysis, animation, and human-machine interaction.
-
-In this research, \emph{pose estimation} is used to ensure that the user's movements can be followed with high accuracy. By utilizing \emph{pose estimation}, the system can understand the direction and intensity of the user's movements, allowing the wheelchair to respond appropriately and efficiently.
+\emph{Pose estimation} is a technique for identifying and tracking the position of the human body in images or videos. This technique typically involves detecting keypoints on the body, such as joints or limb extremities, which are used to model an individual's posture or movement. \emph{Pose estimation} is crucial in various applications, such as sports analysis, animation, and human-machine interaction. By utilizing \emph{pose estimation}, the system can understand the direction and intensity of the user's movements, allowing the wheelchair to respond appropriately and efficiently.
 
 \subsection{YOLO (You Only Look Once)}
 \label{subsec:YOLO}
@@ -67,7 +63,7 @@ In this research, \emph{pose estimation} is used to ensure that the user's movem
 
 \begin{figure}[H] 
   \centering 
-  \includegraphics[scale=0.5]{images/YoloV8Architecture.jpg} 
+  \includegraphics[scale=0.4]{gambar/YoloV8Architecture.jpg} 
   \caption{YOLOv8 Architecture.} 
   \label{fig:YOLOv8Architecture} 
 \end{figure}
@@ -122,7 +118,7 @@ Efficiency and speed are also sharpened through a refined architecture and a mor
 \begin{figure}[H]
   \centering
   \resizebox{1\linewidth}{!}{
-    \input{images/tex/architecture-yolov11.tex}
+    \input{gambar/tex/arsitektur-yolov11.tex}
   }
   \caption{YOLOv11 Architecture}
   \label{fig:YOLOv11Architecture}
@@ -132,7 +128,7 @@ The \emph{C3K2} architecture is a modified version of the \emph{C2F} module. The
 
 \begin{figure}[H]
   \centering
-  \includegraphics[scale=0.35]{images/C3k2.jpg}
+  \includegraphics[scale=0.35]{gambar/C3k2.jpg}
   \caption{Bottleneck, C3, C2F, and C3K2 Modules}
   \label{fig:c3k2}
 \end{figure}
@@ -148,7 +144,7 @@ The \emph{MediaPipe} framework uses the concept of a "graph," where each node in
 
 \begin{figure}[H]
   \centering
-  \includegraphics[scale=0.35]{images/MediaPipe3D.png}
+  \includegraphics[scale=0.35]{gambar/MediaPipe3D.png}
   \caption{MediaPipe 3D}
   \label{fig:MediaPipe3D}
 \end{figure}
@@ -162,7 +158,7 @@ One of the most well-known uses of \emph{MediaPipe} is human pose estimation usi
 
 \begin{figure}[H]
   \centering
-  \includegraphics[scale=0.5]{images/mp_pose.jpg}
+  \includegraphics[scale=0.5]{gambar/mp_pose.jpg}
   \caption{MediaPipe Pose}
   \label{fig:mp_pose}
 \end{figure}
@@ -174,7 +170,7 @@ One of the most well-known uses of \emph{MediaPipe} is human pose estimation usi
 
 \begin{figure}[H]
   \centering
-  \includegraphics[scale=0.5]{images/ConfusionMatrix.jpg}
+  \includegraphics[scale=0.5]{gambar/Matrix Konfusi.jpg}
   \caption{Confusion Matrix.}
   \label{fig:confusion}
 \end{figure}
@@ -247,7 +243,7 @@ Where \(N\) is the number of classes in the dataset and \(AP_i\) is the \emph{av
 
 \begin{figure}[H]
   \centering
-  \includegraphics[scale=0.15]{images/IoU_bbox.jpg}
+  \includegraphics[scale=0.15]{gambar/IoU bbox.jpg}
   \caption{Intersection over Union.}
   \label{fig:IoU_bbox}
 \end{figure}
@@ -262,6 +258,220 @@ During the evaluation process, the bounding box generated by the model is compar
 
 \emph{IoU} is chosen as a measurement tool because of its ability to provide a clear assessment of how accurately the model identifies and bounds objects under various conditions, including variations in size, orientation, and context of objects in the image. A higher \emph{IoU} value indicates that the model can reliably detect and identify objects with a high level of precision.
 
-\subsection{Literature Review on BoT-SORT}
+\subsection{BoT-SORT}
 
 BoT-SORT is a multi-object tracking (MOT) method developed with a tracking-by-detection approach. Essentially, this method leverages several techniques from previous algorithms, particularly ByteTrack, to provide more advanced tracking. Improvements in this method aim to enhance tracking performance in both dynamic and static environments by refining several key components, which will be detailed as follows \cite{aharon2022botsortrobustassociationsmultipedestrian}:
+
+\subsubsection{Kalman Filter}
+\label{subsubsec:Kalman Filter}
+
+The Kalman Filter (KF) is used to predict the location of objects in the next frame based on previous movements. BoT-SORT utilizes a KF with a state vector that includes the object's center coordinates ($x_c$, $y_c$), width ($w$), height ($h$), and the rate of change (velocity) of these variables ($\dot{x_c}$, $\dot{y_c}$, $\dot{w}$, $\dot{h}$) \cite{bewley2016simple, wojke2017simple}. This state vector is defined as:
+
+\begin{equation}
+  \begin{split}
+    \vb*{x}_k = [x_{c}{\scriptstyle(k)}, y_{c}{\scriptstyle(k)}, w{\scriptstyle(k)}, h{\scriptstyle(k)}, \\        
+    \dot{x_{c}}{\scriptstyle(k)}, \dot{y_{c}}{\scriptstyle(k)}, \dot{w}{\scriptstyle(k)}, \dot{h}{\scriptstyle(k)}]^\top
+  \end{split}
+\end{equation}
+
+\begin{equation}
+  \vb*{z}_k = [z_{x_c}{\scriptstyle(k)}, z_{y_c}{\scriptstyle(k)}, z_{w}{\scriptstyle(k)}, z_{h}{\scriptstyle(k)}]^\top
+\end{equation}
+
+The process noise matrix ($\mathbf{Q}_k$) and measurement noise matrix ($\mathbf{R}_k$) are adjusted to be more sensitive to changes within frames, which helps improve tracking accuracy. The matrices $\mathbf{Q}_k$ and $\mathbf{R}_k$ are defined as follows:
+
+\begin{equation}
+  \begin{split}
+    \vb*{Q}_k = diag\big{(} (\sigma_{p} \hat{w}_{k-1|k-1})^2, (\sigma_{p} \hat{h}_{k-1|k-1})^2, \\
+    (\sigma_{p} \hat{w}_{k-1|k-1})^2, (\sigma_{p} \hat{h}_{k-1|k-1})^2, \\
+    (\sigma_{v} \hat{w}_{k-1|k-1})^2, (\sigma_{v} \hat{h}_{k-1|k-1})^2, \\ 
+    (\sigma_{v} \hat{w}_{k-1|k-1})^2 ,(\sigma_{v} \hat{h}_{k-1|k-1})^2\big{)}
+  \end{split}
+\end{equation}
+
+\begin{equation}
+  \begin{split}
+      \vb*{R}_k = diag\big{(}(\sigma_{m} \hat{w}_{k|k-1})^2, (\sigma_{m} \hat{h}_{k|k-1})^2, \\
+      (\sigma_{m} \hat{w}_{k|k-1})^2, (\sigma_{m} \hat{h}_{k|k-1})^2\big{)} 
+  \end{split}
+\end{equation}
+
+With these changes, the bounding box predictions are more accurate compared to traditional Kalman Filter methods, as evidenced by the increased HOTA (Higher Order Tracking Accuracy) values.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[scale=0.19]{gambar/KF_width.png}
+  \caption{Kalman Filter bbox.}
+  \label{fig:KF width}
+\end{figure}
+
+Visualization of the bounding box shape compared to the widely used Kalman filter~\cite{wojke2017simple} (dashed blue) and the proposed Kalman filter (green). It is evident that the width of the bounding box generated by the proposed Kalman filter is more appropriate for the object. The dashed blue bounding box cuts off part of the object's legs (in red), while the green bounding box reaches the desired width.
+
+\subsubsection{\emph{Camera Motion Compensation} (CMC)}
+\label{subsubsec:Camera Motion Compensation}
+
+Trackers based on tracking-by-detection often face issues of ID switches or false negatives due to camera motion, especially in dynamic situations. BoT-SORT implements Camera Motion Compensation (CMC) techniques by utilizing affine transformation to compute the transformation between two frames. By extracting image keypoints \cite{shi1994good}, and then using sparse optical flow ~\cite{Bouguet1999PyramidalIO} for feature tracking with local outlier rejection based on translation. The affine matrix $\vb*{A}_{k-1}^k\in \mathbb{R}^{2 \times 3}$ is solved using the RANSAC method ~\cite{fischler1981random}. The use of sparse registration techniques allows for the exclusion of dynamic objects in the scene based on detection, thus having the potential to estimate background motion more accurately.
+
+\begin{equation}
+  \begin{aligned}
+      & \vb*{A}_{k-1}^k = 
+      \begin{bmatrix}
+          \vb*{M}_{2x2} | \vb*{T}_{2x1}
+      \end{bmatrix} = 
+      \begin{bmatrix}
+          a_{11}\;a_{12}\;a_{13} \\ a_{21}\;a_{22}\;a_{23} \\ 
+      \end{bmatrix}
+  \end{aligned}
+\end{equation}
+\begin{equation}
+  \begin{aligned}
+  {
+      \vb*{\tilde{M}}}^k_{k-1} = 
+      \begin{bmatrix}
+      \vb*{M} & \vb*{0} & \vb*{0} & \vb*{0} \\
+      \vb*{0} & \vb*{M} & \vb*{0} & \vb*{0} \\
+      \vb*{0} & \vb*{0} & \vb*{M} & \vb*{0} \\
+      \vb*{0} & \vb*{0} & \vb*{0} & \vb*{M}
+      \end{bmatrix}, \; 
+      \tilde{\vb*{T}}_{k-1}^k = 
+      \begin{bmatrix}a_{13}\\a_{23}\\ 0\\ 0\\ \vdots \\ 0\end{bmatrix}
+  \end{aligned}
+\end{equation}
+\begin{equation}
+  \begin{aligned}
+      \hat{\vb*{x}}^\prime_{k|k-1} = \tilde{\vb*{M}}_{k-1}^k \hat{\vb*{x}}_{k|k-1} + \tilde{\vb*{T}}_{k-1}^k \\
+  \end{aligned}
+\end{equation}
+\begin{equation}
+    {{\vb*{P}}}^{\prime}_{k|k-1} = 
+    \tilde{\vb*{M}}_{k-1}^k {\vb*{P}}_{k|k-1} {\tilde{\vb*{M}}_{k-1}}^{k^\top}
+    \label{eq:cmc_cov}        
+\end{equation}
+
+Where $\vb*{M}\in \mathbb{R}^{2 \times 2}$ is a matrix containing the scale and rotation components of the affine matrix $\vb*{A}$, and $T$ contains the translation components. A mathematical trick is used by defining $\tilde{\vb*{M}}^k_{k-1}\in \mathbb{R}^{8 \times 8}$ and $\tilde{\vb*{T}}_{k-1}^k\in \mathbb{R}^{8}$. Subsequently, $\hat{\vb*{x}}_{k|k-1}$ and $\hat{\vb*{x}}^\prime_{k|k-1}$ are defined as the state prediction vectors of the Kalman Filter (KF) at time $k$, before and after camera motion compensation, respectively, while $\vb*{P}_{k|k-1}$ and $\vb*{P'}_{k|k-1}$ are defined as the KF covariance matrices before and after correction. After that, $\hat{\vb*{x}}^\prime_{k|k-1}$ and ${{\hat{\vb*{P}}}^{\prime}}_{k|k-1}$ are used in the Kalman Filter update step as follows.
+
+\begin{equation}
+  \begin{aligned}
+  & \vb*{K_k} =  {{\vb*{P}}}^{\prime}_{k|k-1} \vb*{H}_k^\top (\vb*{H}_k  {{\vb*{P}}}^{\prime}_{k|k-1} \vb*{H}_k^\top + \vb*{R}_k)^{-1} \\
+  & \hat{\vb*{x}}_{k|k} = \hat{\vb*{x}}^\prime_{k|k-1} + \vb*{K}_k (\vb*{z}_k - \vb*{H}_k \hat{\vb*{x}}^\prime_{k|k-1}) \\
+  & \vb*{P}_{k|k} = (\vb*{I}- \vb*{K}_k \vb*{H}_k)  {{\vb*{P}}}^{\prime}_{k|k-1}
+  \end{aligned}
+  \label{eq:cmc_update_kf}
+\end{equation} 
+
+In high-speed scenarios, full correction of the state vector, including velocity components, is crucial. If the camera moves slowly compared to the frame rate, the correction in equation \ref{eq:cmc_cov} can be ignored. After compensating for rigid camera motion and assuming the object's position changes only slightly from one frame to the next, in high frame rate applications, when detections are missed, trajectory prediction can be performed using the KF prediction step, allowing for a more continuous trajectory display and higher MOTA.
+
+Visualization of bounding box (BB) predictions from tracklets is used for association with new detection BBs based on maximum IoU criteria. (a.1) and (b.1) show predictions from the Kalman Filter (KF). (a.2) and (b.2) show predictions from the KF after camera motion compensation. In image (b.1), a scenario is shown where ignoring camera motion can lead to IDSWs or FNs. Conversely, in image (b.2), the prediction aligns with the desired location, and the association is successfully made. Figure \ref{fig:cmc} is generated from the MOT17 sequence \cite{milan2016mot16}, which includes camera movement due to a vehicle maneuvering to the right.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[scale=0.33]{gambar/cmc_pred.png}
+  \caption{Camera Motion Compensation}
+  \label{fig:cmc}
+\end{figure}
+
+\subsubsection{IoU - Re-ID Fusion}
+\label{subsubsec:IoU - Re-ID Fusion}
+
+Re-ID features are integrated to leverage advancements in visual object representation. Re-ID features are extracted using FastReID with the ResNeSt50 backbone \cite{he2020fastreid, zhang2020resnest}, and an exponential moving average (EMA) mechanism is used to update the tracklet appearance status \cite{wang2020towards}. The appearance status update is performed using the following formula:
+
+\begin{equation}
+e_i^k = \alpha e_i^{k-1} + (1 - \alpha) f_i^k
+\end{equation}
+
+Where $e_i^k$ is the appearance status for the $i$-th tracklet at frame $k$, $f_i^k$ is the current detection appearance embedding, and $\alpha=0.9$ is the momentum term.
+
+The fusion of motion (IoU) and appearance (cosine similarity) information is performed as follows. First, candidates with low cosine similarity or those too far based on IoU scores are rejected. Next, the minimum value in each matrix element is used as the final value of the cost matrix $C$. The IoU-ReID fusion pipeline can be formulated as follows:
+
+\begin{equation}
+  \begin{aligned}
+  & \hat{d}_{i, j}^{cos} = 
+    \begin{cases}
+      0.5 \cdot d_{i, j}^{cos}, \text{($d_{i, j}^{cos} < \theta_{emb})$ $\land$ $(d_{i, j}^{iou} < \theta_{iou})$}\\
+      1, \text{otherwise}
+    \end{cases} \\
+  \end{aligned}
+  \label{eq:min_dist}        
+\end{equation}
+
+\begin{equation}
+  C_{i, j} = \min\{d_{i, j}^{iou}, \hat{d}_{i, j}^{cos}\}
+\end{equation}
+
+\begin{equation}
+  \begin{aligned}
+  \hat{b} = 
+    \begin{cases}
+      0, \quad\quad \Delta data \neq 0 \\
+      1, \quad \neg ( \hat{t} \in [0, t] \lor b ) \\
+      b, \quad\quad \text{otherwise}\\
+    \end{cases}
+  \end{aligned}
+\end{equation}
+  
+Where $C_{i, j}$ is the element $(i, j)$ of the cost matrix $C$. $d_{i, j}^{iou}$ is the IoU distance between the $i$-th tracklet bounding box prediction and the $j$-th detection bounding box, representing the motion cost. $d_{i, j}^{cos}$ is the cosine distance between the average appearance descriptor of the $i$-th tracklet and the new detection descriptor of the $j$-th detection. $\hat{d}_{i, j}^{cos}$ is the new appearance cost used. $\theta_{iou}$ is the proximity threshold, set at 0.5, to reject unlikely tracklet and detection pairs. $\theta_{emb}$ is the appearance threshold, used to separate positive associations from the tracklet appearance state and detection embedding vector from negative associations.
+The linear assignment problem of high-confidence detections, i.e., the first association step, is solved using the Hungarian algorithm~\cite{kuhn1955hungarian} and based on the cost matrix $C$, formed using Equation~\ref{eq:min_dist}.
+
+\subsection{RoboFlow}
+\label{subsec:RoboFlow}
+
+\emph{RoboFlow} is a platform that supports efficient and effective data processing. Through various features provided, from data annotation to model evaluation, \emph{RoboFlow} ensures that every stage in the machine learning workflow can be carried out more structured and easily integrated with existing frameworks. Model performance improvements can be developed without being burdened by technical complexities in data preparation.
+
+\emph{RoboFlow} facilitates the image annotation process through intuitive tools, accelerating the creation of labels for datasets. Images in the dataset are automatically modified through data augmentation to create variations that enhance the robustness of the trained model. Support for conversion between various popular dataset formats is also provided, simplifying data preparation for various machine learning algorithms. Additionally, functions for splitting the dataset into training, validation, and testing sets for model validation are available.
+
+\emph{RoboFlow} also offers integration with many popular machine learning frameworks such as \emph{TensorFlow}, \emph{PyTorch}, and \emph{YOLO}, which includes:
+
+\begin{itemize}
+    \item \emph{Data Export}: Datasets can be easily exported in formats ready to be used by machine learning frameworks.
+    \item \emph{Model Training}: The platform allows direct model training using the prepared and optimized dataset.
+    \item \emph{Model Evaluation}: Model performance is measured using metrics that help in understanding and adjusting the model's effectiveness as needed.
+\end{itemize}
+
+\subsection{OBS Studio}
+\label{subsec:OBS Studio}
+
+\emph{OBS Studio} is an open-source software designed for video streaming and recording. In this project, \emph{OBS Studio} is used to document and analyze the performance of the autonomous wheelchair during the testing phase. This software allows the selection of various video input sources, including webcams, which are used to visually record the entire testing process. With \emph{OBS Studio}, the testing process from start to finish can be fully recorded, allowing for the collection of rich and detailed visual data.
+
+\subsection{ESP32 Devkit V1}
+\label{subsec:ESP32 Devkit V1}
+
+\emph{ESP32 Devkit V1} is a microcontroller equipped with wireless communication capabilities, including \emph{Wi-Fi} and \emph{Bluetooth}. In this project, \emph{ESP32 Devkit V1} is used as the main communication module for the autonomous wheelchair. This device allows the wheelchair to interact with external devices such as smartphones or computers through wireless networks.
+
+One of the main advantages of this \emph{Devkit} is the numerous pins it has, allowing the microcontroller to be programmed for various tasks. These pins provide high flexibility in connecting various sensors and actuators needed. By utilizing these pins, the system can perform multiple tasks simultaneously, such as collecting data from sensors, controlling motors, and managing wireless communication.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[scale=0.25]{gambar/ESP32-DEVKIT-V1-board.png}
+  \caption{ESP32 Devkit V1}
+  \label{fig:ESP32DevkitV1}
+\end{figure}
+
+This \emph{Devkit} is compatible with the \emph{Arduino IDE} using the \emph{C++} programming language, which is a commonly used platform. \emph{Arduino IDE} provides various libraries and support that facilitate the programming of \emph{ESP32} to control various connected hardware. With programming in \emph{C++}, efficient and structured code can be produced to perform various complex tasks, such as sensor data processing and motor control.
+
+\subsection{Motor Driver H-Bridge}
+\label{subsec:Motor}
+
+\emph{Motor Driver H-Bridge} is a crucial electronic component in controlling the DC motor of the wheelchair. This component allows the adjustment of the motor's direction and speed, which is essential for wheelchair navigation under various conditions. By utilizing the \emph{H-Bridge}, the wheelchair motor can move forward, backward, or turn as needed.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[scale=0.4]{gambar/Motor Driver H - bridge Bts.jpg}
+  \caption{Motor Driver H-Bridge}
+  \label{fig:MotorDriverH-Bridge}
+\end{figure}
+
+The use of \emph{H-Bridge} in the autonomous system allows real-time adjustment of the wheelchair's movement based on information received from sensors. This enables the wheelchair to follow the user's movements with high precision. The ability to navigate independently is crucial in ensuring that the wheelchair can operate safely and efficiently in various environments.
+
+\subsection{KY-123 Electric Wheelchair}
+\label{subsec:KY-123}
+
+The \emph{KY-123} electric wheelchair is used as the main platform in the development of the autonomous wheelchair in this research. This wheelchair is equipped with integrated motors and controllers, allowing further modifications to support the designed autonomous system.
+
+With the addition of sensors, cameras, and other hardware, the \emph{KY-123} wheelchair is expected to perform autonomous functions, including the ability to follow the user's movements independently. The integration between hardware and software on the \emph{KY-123} is a key element in achieving a reliable and effective system. These modifications aim to enhance mobility and ease of use for individuals with physical limitations, ensuring optimal performance in various usage scenarios.
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[scale=0.05]{gambar/kursi roda.png}
+  \caption{KY-123 Electric Wheelchair}
+  \label{fig:KYElectricWheelchair}
+\end{figure}
