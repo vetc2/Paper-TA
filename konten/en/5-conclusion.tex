@@ -7,12 +7,14 @@
 Based on the testing results, the following conclusions can be drawn:
 
 \begin{enumerate}
-  \item The model with the highest metrics trained with various configurations is the one with the highest mAP score at IoU 0.5 of 81.85\%. This value is sufficient for performing avoidance, as seen from the excellent avoidance performance results.
-  \item The performance of the NUC in FPS testing produced a lower value compared to the author's personal laptop, with a difference of 7.029 fps.
-  \item The average delay obtained in the testing was approximately 0.2494 seconds, and the average inference value obtained was 139.4899 ms or 0.1394 seconds.
-  \item The results show that detection using \emph{Bounding Box} and shoulder landmarks is more accurate at longer distances (150 cm and 100 cm), while arm landmarks are more accurate at closer distances (50 cm). The best average \emph{difference} for the bounding box at 150 cm is 3.2 cm, the best average \emph{difference} for shoulder landmarks at 100 cm is 2.2 cm, and the best average \emph{difference} for arm landmarks at 50 cm is 1.93 cm.
-  \item Detection performance results were satisfactory in 30 test samples, with a success rate of 100\%, indicating that the system created can avoid humans very well.
-
+  \item The model demonstrates high detection performance with an mAP score of 81.85\% at a 0.5 threshold.
+  \item The system is capable of processing frames in real-time with an average FPS of around 40, indicating adequate processing speed for field applications.
+  \item The time regulator testing shows that 66.17\% of responses are within a relatively short time, but 34\% exceed 0.5 seconds.
+  \item The system successfully locked the target (Locked Detection) 4 times out of 15 trials, resulting in a success rate of 26.67\%.
+  \item The system performs best under optimal lighting conditions, but performance degrades under low lighting conditions.
+  \item The system consistently detects objects within a distance of less than 1 meter and sends a "Stop" instruction to prevent collisions.
+  \item The system exhibits excellent performance in detecting and following objects in various scenarios, whether in-frame, moving forward, or turning.
+  \item The system is able to follow objects well in all tested path conditions, achieving a success rate of 100\%.
 \end{enumerate}
 
 \section{Suggestions}
@@ -21,9 +23,10 @@ Based on the testing results, the following conclusions can be drawn:
 For further development in future research, the following suggestions can be given:
 
 \begin{enumerate}
-
-  \item Increase the variety of datasets to enhance detection performance.
-  \item Use a device with better performance for higher fps.
-  \item Improve the detection grid performance by making more detailed adjustments for better mapping.
-  \item Use a device cooler when testing in an open room to avoid performance degradation.
+  \item Improve the \texttt{track()} function to maintain the consistency of detected object ID identities, in order to enhance tracking accuracy.
+  \item Consider using additional lighting that does not cause overexposure to improve detection performance under low lighting conditions.
+  \item Further optimize the system to reduce response times exceeding 0.5 seconds, to enhance stability and performance consistency.
+  \item Develop a more adaptive algorithm to handle out-of-frame conditions, to prevent the issuance of irrelevant or unsafe instructions.
+  \item Implement the system in real-world scenarios with various operational conditions to test and ensure the overall reliability and safety of the system.
 \end{enumerate}
+

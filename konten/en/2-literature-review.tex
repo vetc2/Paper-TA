@@ -109,12 +109,6 @@ The loss function in \emph{YOLOv8} consists of several main components that meas
 In this equation, \(S\) is the grid size, \(B\) is the number of bounding boxes per grid cell, \(\mathbb{1}_{ij}^{\mathrm{obj}}\) is an indicator that bounding box j in cell i predicts an object, and \(\lambda_{\mathrm{coord}}\) and \(\lambda_{\mathrm{noobj}}\) are hyperparameters that control the importance of each loss component.
 
 \vspace{5pt}
-\subsubsection{YOLOv8 Pose}
-\label{subsubsec: YOLOv8 Pose}
-
-\emph{YOLOv8 Pose} is a variant of \emph{YOLOv8} specifically designed for pose estimation tasks. By combining the speed of \emph{YOLO} with precise pose detection capabilities, \emph{YOLOv8 Pose} can detect keypoints on the human body in real-time. Each bounding box not only contains information about the location and size of the object but also the coordinates of keypoints related to human pose (e.g., shoulders, elbows, knees, etc.).
-
-\vspace{5pt}
 \subsubsection{YOLOv10}
 \label{subsubsec:YOLOv10}
 

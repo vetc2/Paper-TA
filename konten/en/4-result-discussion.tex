@@ -5,182 +5,300 @@
 % Modify the paragraphs in this section as desired.
 \subsection{FPS Testing}
 
-As shown in Table \ref{tb:FPSLaptop} on the right, the average FPS value in the laptop FPS test is 13.140. The highest FPS value is 13.23, and the lowest FPS is 13.05. Additionally, as seen in Table \ref{tb:FPSLaptop}, the average FPS value in the Intel NUC test is 6.111. The highest FPS value is 6.47, and the lowest FPS is 5.54.
+From the graph \ref{fig:fps_trend}, it can be seen that the system achieves a maximum FPS of 62.5 and a minimum FPS of 23.81. This fluctuation is due to variations in processing time (in milliseconds) for each frame, influenced by environmental conditions, the complexity of detected objects, and the performance of the hardware used.
+These results indicate that the system consistently processes frames with an average FPS above 40. The stability of the values on the laptop indicates that the system's performance on the laptop is very good and efficient.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=.5\textwidth]{gambar/tex/fps.pdf}
+    \caption{FPS Trend}
+    \label{fig:fps_trend}
+\end{figure}
+
+\subsection{Regulator Time Testing}
+Based on the above output, this test measures the time required for the system to regulate instruction codes according to environmental changes, by recording direction data and timestamps using Arduino IDE and Visual Studio Code. The resulting data, consisting of Timestamp Receive ESP and Timestamp Receive Motor, is processed into response time distribution plots. The test results show that 66.17\% of responses occur within a relatively short time, while the remaining 34\% exceed 0.5 seconds, indicating minor variations due to environmental conditions or system performance.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=.5\textwidth]{gambar/tex/plot.pdf}
+    \caption{Regulator Time Plot}
+    \label{fig:regulator_time_plot}
+\end{figure}
+
+\subsection{Tracking Success Evaluation}
+\label{subsec:trackingsuccessevaluation}
+
+This section evaluates the success of the system in tracking the target object. The success rate is analyzed to determine the reliability of the system in various scenarios.
+
 \begin{table}[H]
     \centering
-    \caption{FPS Comparison Results on Laptop and NUC}
-    \label{tb:FPSLaptop}
+    \caption{Data Tracking Success}
+    \label{tab:tracking_success}
+    \begin{tabular}{|c|c|}
+        \hline 
+        \cellcolor[HTML]{C0C0C0}Trial & \cellcolor[HTML]{C0C0C0}Result \\ \hline
+        1 & \cellcolor[HTML]{7cFF7c}Locked Detection \\ \hline
+        2 & \cellcolor[HTML]{7cFF7c}Locked Detection \\ \hline
+        3 & \cellcolor[HTML]{FF7c7c}Distracted Detection \\ \hline
+        4 & \cellcolor[HTML]{FF7c7c}Distracted Detection \\ \hline
+        5 & \cellcolor[HTML]{FF7c7c}Distracted Detection \\ \hline
+        6 & \cellcolor[HTML]{FF7c7c}Distracted Detection \\ \hline
+        7 & \cellcolor[HTML]{7cFF7c}Locked Detection \\ \hline
+        8 & \cellcolor[HTML]{7cFF7c}Locked Detection \\ \hline
+        9 & \cellcolor[HTML]{FF7c7c}Distracted Detection \\ \hline 
+        10 & \cellcolor[HTML]{FF7c7c}Distracted Detection \\ \hline
+        11 & \cellcolor[HTML]{FF7c7c}Distracted Detection \\ \hline
+        12 & \cellcolor[HTML]{FF7c7c}Distracted Detection \\ \hline
+        13 & \cellcolor[HTML]{FF7c7c}Distracted Detection \\ \hline
+        14 & \cellcolor[HTML]{FF7c7c}Distracted Detection \\ \hline
+        15 & \cellcolor[HTML]{FF7c7c}Distracted Detection \\ \hline
+    \end{tabular}
+\end{table}
+
+The ability of BotSORT on YOLO to track human objects is evident from 15 trials. The system successfully locked object detection 4 times, while it failed to lock object detection 11 times cumulatively. These results indicate that the system can track objects with a success rate of 26.67\%. However, there is a 73.33\% failure rate in locking object detection, highlighting a limitation in the system.
+
+These results show that the system still has limitations in consistently maintaining tracking stability of the target object. Inconsistencies in object tracking often cause the system to lose focus on the target and generate new ID numbers for each re-detection. However, despite tracking failures, the use of the smallest ID allows for adequate object identification accuracy. This approach helps the testing process to continue with consistent object identity references, despite limitations in maintaining continuous tracking.
+
+\subsection{Lighting Level Evaluation}
+\label{subsec:lightinglevelevaluation}
+
+This section discusses the system's performance under various lighting conditions, including morning, afternoon, evening, and night. The evaluation focuses on the system's ability to detect objects accurately under different lighting levels, measured in lux. The table below presents the minimum, average, and maximum lux values, along with the confidence values for YOLOv11 and MediaPipe Pose.
+
+\begin{table}[H]
+    \centering
+    \caption{Lighting Level Evaluation}
+    \label{tab:lighting_level_evaluation}
+    \begin{tabular}{|c|c|c|c|c|c|}
+        \hline 
+        \rowcolor[HTML]{C0C0C0} 
+        \multicolumn{1}{|c|}{\cellcolor[HTML]{C0C0C0}}& \multicolumn{3}{c|}{\cellcolor[HTML]{C0C0C0}\textbf{Lux}} & \multicolumn{2}{c|}{\cellcolor[HTML]{C0C0C0}\textbf{Conf.}}  \\ \cline{2-6} 
+        \rowcolor[HTML]{C0C0C0} 
+        \multicolumn{1}{|c|}{\multirow{-2}{*}{\cellcolor[HTML]{C0C0C0}\textbf{Time of Day}}} & \multicolumn{1}{c|}{\cellcolor[HTML]{C0C0C0}\textbf{Min}} & \multicolumn{1}{c|}{\cellcolor[HTML]{C0C0C0}\textbf{Avg}} & \multicolumn{1}{c|}{\cellcolor[HTML]{C0C0C0}\textbf{Max}} & \multicolumn{1}{c|}{\cellcolor[HTML]{C0C0C0}\textbf{YOLO}} & \multicolumn{1}{c|}{\cellcolor[HTML]{C0C0C0}\textbf{MP}} \\ \hline
+        \cellcolor[HTML]{C0C0C0} \textbf{Morning} & 100 & 300 & 500 & 0.73 & 0.71 \\ \hline
+        \cellcolor[HTML]{C0C0C0} \textbf{Afternoon} & 2622 & 3753 & 5574 & 0.82 & 0.76 \\ \hline
+        \cellcolor[HTML]{C0C0C0} \textbf{Evening} & 50 & 200 & 400 & 0.75 & 0.70 \\ \hline
+        \cellcolor[HTML]{C0C0C0} \textbf{Night} & 26 & 215 & 538 & 0.60 & 0.56 \\ \hline
+    \end{tabular}
+\end{table}
+
+The data indicates that the system performs best during the afternoon when the lighting levels are highest, resulting in higher confidence values for both YOLOv11 and MediaPipe Pose. In contrast, the system's performance decreases during the night due to lower lighting levels, leading to lower confidence values.
+
+It is not recommended to use additional lighting, such as a flashlight, as it can cause overexposure and negatively impact the system's detection accuracy.
+
+\subsection{Detection Distance Suitability Evaluation}
+\label{subsec:detectiondistancesuitabilityevaluation}
+
+This evaluation measures the system's ability to detect objects at various distances and analyzes the system's performance at those distances. The focus of this evaluation is to ensure that when an object is very close (\textless 1m), the system sends an instruction code to stop (halt) to prevent collisions.
+
+\begin{table}[H]
+    \centering
+    \caption{Data Jarak (\textless 1m) untuk Diam}
+    \label{tab:jarak_diam}
+    \begin{tabular}{|c|c|c|c|c|c|c|c|c|}
+    \hline
+        \cellcolor[HTML]{C0C0C0}Reg (s) & \cellcolor[HTML]{C0C0C0}YOLO (m) & \cellcolor[HTML]{C0C0C0}MP (m) & \cellcolor[HTML]{C0C0C0}Result \\ \hline
+        \cellcolor[HTML]{7cFF7c}0.8402 & 2.0631 & 0.9852 & Stop \\ \hline
+        \cellcolor[HTML]{7cFF7c}0.2585 & 1.1003 & 0.8942 & Stop \\ \hline
+        \cellcolor[HTML]{FF7c7c}2.1821 & 1.1773 & 0.9652 & Stop \\ \hline
+        \cellcolor[HTML]{FF7c7c}1.4998 & 1.4123 & 0.9574 & Stop \\ \hline
+        \cellcolor[HTML]{7cFF7c}0.2538 & 1.4538 & 0.9899 & Stop \\ \hline
+        \cellcolor[HTML]{FF7c7c}2.4033 & 1.1691 & 0.9213 & Stop \\ \hline
+        \cellcolor[HTML]{7cFF7c}0.4079 & 1.1839 & 0.9118 & Stop \\ \hline
+        \cellcolor[HTML]{7cFF7c}0.8708 & 1.0960 & 0.9548 & Stop \\ \hline
+        \cellcolor[HTML]{7cFF7c}0.4262 & 1.1003 & 0.9189 & Stop \\ \hline
+        \cellcolor[HTML]{7cFF7c}0.3497 & 1.1032 & 0.8985 & Stop \\ \hline
+        \cellcolor[HTML]{7cFF7c}0.3314 & 1.1032 & 0.8785 & Stop \\ \hline
+        \cellcolor[HTML]{FF7c7c}1.4848 & 1.1594 & 0.9943 & Stop \\ \hline
+        \cellcolor[HTML]{FF7c7c}1.5987 & 1.3643 & 0.9899 & Stop \\ \hline
+        \cellcolor[HTML]{7cFF7c}0.2719 & 1.0989 & 0.7700 & Stop \\ \hline
+        \cellcolor[HTML]{7cFF7c}0.2509 & 1.1452 & 0.5782 & Stop \\ \hline
+        \cellcolor[HTML]{7cFF7c}0.3036 & 1.4339 & 0.9447 & Stop \\ \hline
+        \cellcolor[HTML]{7cFF7c}0.3326 & 1.4291 & 0.8357 & Stop \\ \hline
+        \cellcolor[HTML]{7cFF7c}0.3588 & 1.4389 & 0.8222 & Stop \\ \hline
+        \cellcolor[HTML]{7cFF7c}0.3092 & 1.3913 & 0.7249 & Stop \\ \hline
+        \cellcolor[HTML]{FF7c7c}15.5192 & 1.4563 & 0.5955 & Stop \\ \hline
+    \end{tabular}
+\end{table}
+
+The system successfully stops when the object is very close (MP \textless 1m). However, there is an error that causes a delay in the time taken from the previous instruction code to the latest instruction code reaching the machine. This delay can affect the system's responsiveness and may lead to potential issues in real-time operation.
+
+The distance testing has also been physically verified with careful measurements and comparisons before presenting the data. This ensures the accuracy and reliability of the distance measurements used in the evaluations. The verification process involved using calibrated measuring tools and repeated trials to minimize errors.
+
+\subsection{Object Tracking Performance}
+\label{subsec:objecttrackingperformance}
+
+An analysis is conducted to measure how accurately the system can track the target object, including maintaining the correct distance and not losing the object under various conditions.
+The more data sent as \texttt{C}, the more frequently the system stops to provide the next instruction code. This indicates that the system detects conditions requiring temporary halts to prevent collisions or other errors.
+If the detection data and the transmitted data are the same, it means the program runs according to the designed system. This shows that the system can detect and transmit instructions accurately and consistently.
+
+The performance of the system in tracking objects is evaluated through various experiments, including in-frame, go straight, left turn, right turn, and out-of-frame experiments. Each experiment aims to test the system's ability to maintain accurate tracking under different conditions and scenarios.
+
+\vspace{5pt}
+\subsubsection{In-Frame Experiment}
+\label{subsubsec:inframeexperiment}
+
+This subsection discusses the system's ability to track objects within the camera frame, with a primary focus on evaluating the performance of the regulator. The objective is to ensure that the system can respond to detection results accurately and consistently, according to the conditions of the detected object within the camera frame.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.45\textwidth]{gambar/tex/sents.pdf}
+    \caption{Detection and Transmission Plots.}
+    \label{fig:detection_transmission_plots}
+\end{figure}
+
+Table \ref{tab:summary_data_transmission_detection} summarizes the transmission and detection data. The percentage of data transmitted as \texttt{C} is 55.4\%, indicating that the system frequently sends stop instructions. The percentage of data where detection and transmitted data are the same is 38.3\%, indicating that the system operates according to the performed detections. The percentage of data where detection and transmitted data differ is 6.3\%, indicating the presence of errors or faults in the system.
+
+\begin{table}[H]
+    \centering
+    \caption{Summary of Data Transmission and Detection}
+    \label{tab:summary_data_transmission_detection}
+    \begin{tabular}{|c|c|}
+        \hline 
+        \cellcolor[HTML]{000000} & \cellcolor[HTML]{C0C0C0} \textbf{Percentage}   \\ \hline
+        \cellcolor[HTML]{C0C0C0} \textbf{Transmitted as \texttt{C}} & 55.4  \\ \hline
+        \cellcolor[HTML]{C0C0C0} \textbf{Same Register}  & 38.3 \\ \hline
+        \cellcolor[HTML]{C0C0C0} \textbf{Different Register}  & 6.3 \\ \hline
+    \end{tabular}
+\end{table}
+
+\vspace{5pt}
+\subsubsection{Go Straight Experiment}
+\label{subsubsec:gostraightexperiment}
+
+This subsection discusses the system's ability to track an object moving straight ahead. The challenges faced include maintaining the object within the frame, adjusting the speed of the drive motors, and ensuring optimal distance. The solutions implemented involve adjusting control parameters, using adaptive pose detection algorithms, and employing movement strategies that consider the object's direction, enabling the system to maintain optimal distance and accuracy during straight movement.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.45\textwidth]{gambar/tex/forward.pdf}
+    \caption{Straight Movement Plots}
+    \label{fig:straight_movement_plots}
+\end{figure}
+
+Table \ref{tab:straight_movement_data_transmission_detection} summarizes the transmission and detection data during straight movement. The percentage of data transmitted as \texttt{C} is 15.4\%, indicating that the system frequently sends stop instructions. The percentage of data where detection and transmitted data are the same is 11.0\%, indicating that the system operates according to the performed detections. The percentage of data where detection and transmitted data differ is 1.5\%, indicating the presence of errors or faults in the system.
+
+\begin{table}[H]
+    \centering
+    \caption{Summary of Data During Straight Movement}
+    \label{tab:straight_movement_data_transmission_detection}
+    \begin{tabular}{|c|c|}
+        \hline 
+        \cellcolor[HTML]{000000} & \cellcolor[HTML]{C0C0C0} \textbf{Percentage}   \\ \hline
+        \cellcolor[HTML]{C0C0C0} \textbf{Transmitted as \texttt{C}} & 15.4  \\ \hline
+        \cellcolor[HTML]{C0C0C0} \textbf{Same Register}  & 11.0  \\ \hline
+        \cellcolor[HTML]{C0C0C0} \textbf{Different Register}   & 1.5  \\ \hline
+    \end{tabular}
+\end{table}
+
+\vspace{5pt}
+\subsubsection{Left Turn Experiment}
+\label{subsubsec:leftturnexperiment}
+
+This subsection discusses the system's ability to track an object when it makes a left turn. In this condition, challenges include faster changes in relative position, the potential loss of the object from the frame, and the need to adapt the speed of the drive motors. The solutions implemented involve adjusting control parameters, using more adaptive pose detection algorithms, and employing movement strategies that consider the object's turning direction, enabling the system to maintain optimal distance and accuracy during left turns.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.45\textwidth]{gambar/tex/left.pdf}
+    \caption{Left Turn Plots}
+    \label{fig:left_turn_plots}
+\end{figure}
+
+Table \ref{tab:left_turn_data_transmission_detection} summarizes the transmission and detection data during left turns. The percentage of data transmitted as \texttt{C} is 10.5\%, indicating that the system frequently sends stop instructions. The percentage of data where detection and transmitted data are the same is 6.7\%, indicating that the system operates according to the performed detections. The percentage of data where detection and transmitted data differ is 2.0\%, indicating the presence of errors or faults in the system.
+
+\begin{table}[H]
+    \centering
+    \caption{Summary of Data During Left Turn}
+    \label{tab:left_turn_data_transmission_detection}
+    \begin{tabular}{|c|c|}
+        \hline 
+        \cellcolor[HTML]{000000} & \cellcolor[HTML]{C0C0C0} \textbf{Percentage}  \\ \hline
+        \cellcolor[HTML]{C0C0C0} \textbf{Transmitted as \texttt{C}} & 10.5 \\ \hline
+        \cellcolor[HTML]{C0C0C0} \textbf{Same Register}  & 6.7 \\ \hline
+        \cellcolor[HTML]{C0C0C0} \textbf{Different Register}   & 2.0 \\ \hline
+    \end{tabular}
+\end{table}
+
+\vspace{5pt}
+\subsubsection{Right Turn Experiment}
+\label{subsubsec:rightturnexperiment}
+
+This subsection discusses the system's ability to track an object when it makes a right turn, which is fundamentally similar to the left turn condition. The challenges faced include maintaining the object within the frame while adjusting the necessary turning angle. The solutions involve utilizing data fusion from YOLOv11 and MediaPipe Pose, as well as implementing control algorithms capable of timely direction correction, enabling the system to track the object making a right turn stably and accurately.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.45\textwidth]{gambar/tex/right.pdf}
+    \caption{Right Turn Plots}
+    \label{fig:right_turn_plots}
+\end{figure}
+
+Table \ref{tab:right_turn_data_transmission_detection} summarizes the transmission and detection data during right turns. The percentage of data transmitted as \texttt{C} is 6.7\%, indicating that the system frequently sends stop instructions. The percentage of data where detection and transmitted data are the same is 5.0\%, indicating that the system operates according to the performed detections. The percentage of data where detection and transmitted data differ is 1.5\%, indicating the presence of errors or faults in the system.
+
+\begin{table}[H]
+    \centering
+    \caption{Summary of Data During Right Turn}
+    \label{tab:right_turn_data_transmission_detection}
+    \begin{tabular}{|c|c|}
+        \hline 
+        \cellcolor[HTML]{000000} & \cellcolor[HTML]{C0C0C0} \textbf{Percentage}   \\ \hline
+        \cellcolor[HTML]{C0C0C0} \textbf{Transmitted as \texttt{C}} & 6.7  \\ \hline
+        \cellcolor[HTML]{C0C0C0} \textbf{Same Register}  & 5.0  \\ \hline
+        \cellcolor[HTML]{C0C0C0} \textbf{Different Register}   & 1.5  \\ \hline
+    \end{tabular}
+\end{table}
+
+\vspace{5pt}
+\subsubsection{Out-of-Frame Experiment}
+\label{subsubsec:outofframeexperiment}
+
+This subsection discusses the system's ability to handle conditions when the object moves out of the camera's field of view (out of frame). The challenge that arises is the loss of visual data about the object's position and movement, requiring the system to predict the next position or adjust the search strategy. The solutions employed include integrating trajectory prediction algorithms and reinitializing the position, which help the system to resume tracking the object once it re-enters the frame.
+
+\begin{table}[H]
+    \centering
+    \caption{Out-of-Frame Status Data}
+    \label{tab:Out-of-Frame_status}
+    \begin{tabular}{|c|c|c|c|c|c|c|c|c|}
+    \hline
+        \cellcolor[HTML]{C0C0C0}Reg (s) & \cellcolor[HTML]{C0C0C0}YOLO (m) & \cellcolor[HTML]{C0C0C0}MP (m) & \cellcolor[HTML]{C0C0C0}Result \\ \hline
+        \cellcolor[HTML]{7cFF7c}0.2931 & 0.0 & 0.0 & Turn Left \\ \hline
+        \cellcolor[HTML]{7cFF7c}0.3535 & 0.0 & 0.0 & Turn Left \\ \hline
+        \cellcolor[HTML]{7cFF7c}0.2502 & 0.0 & 0.0 & Turn Left \\ \hline
+        \cellcolor[HTML]{7cFF7c}0.2617 & 0.0 & 0.0 & Turn Left \\ \hline
+        \cellcolor[HTML]{7cFF7c}0.2506 & 0.0 & 0.0 & Turn Left \\ \hline
+        \cellcolor[HTML]{7cFF7c}0.2758 & 0.0 & 0.0 & Forward \\ \hline
+        \cellcolor[HTML]{7cFF7c}0.3151 & 0.0 & 0.0 & Forward \\ \hline
+        \cellcolor[HTML]{7cFF7c}0.3001 & 0.0 & 0.0 & Forward \\ \hline
+        \cellcolor[HTML]{7cFF7c}0.3185 & 0.0 & 0.0 & Forward \\ \hline
+        \cellcolor[HTML]{7cFF7c}0.2687 & 0.0 & 0.0 & Forward \\ \hline
+        \cellcolor[HTML]{7cFF7c}0.7366 & 0.0 & 0.0 & Stop \\ \hline
+        \cellcolor[HTML]{7cFF7c}0.3732 & 0.0 & 0.0 & Stop \\ \hline
+        \cellcolor[HTML]{7cFF7c}0.2571 & 0.0 & 0.0 & Stop \\ \hline
+        \cellcolor[HTML]{7cFF7c}0.3522 & 0.0 & 0.0 & Stop \\ \hline
+        \cellcolor[HTML]{7cFF7c}0.3647 & 0.0 & 0.0 & Stop \\ \hline
+        \cellcolor[HTML]{7cFF7c}0.2395 & 0.0 & 0.0 & Turn Right \\ \hline
+        \cellcolor[HTML]{7cFF7c}0.3518 & 0.0 & 0.0 & Turn Right \\ \hline
+        \cellcolor[HTML]{7cFF7c}0.2897 & 0.0 & 0.0 & Turn Right \\ \hline
+        \cellcolor[HTML]{7cFF7c}0.2615 & 0.0 & 0.0 & Turn Right \\ \hline
+        \cellcolor[HTML]{7cFF7c}0.2711 & 0.0 & 0.0 & Turn Right \\ \hline
+    \end{tabular}
+\end{table}
+
+Some data has been filtered to present data showing the system working perfectly when no object is detected and sending the previous instruction code without a long delay to the machine. However, there is a serious issue where the system continuously sends forward instruction codes without any guarantee that an object will be detected to change the instruction code to the machine. This can lead to potential safety risks and inefficiencies in the system's operation.
+
+\subsection{Following Success Performance}
+\label{subsec:followingsuccessperformance}
+
+This section tests whether the system can follow an object on specific paths conducted in areas such as corridors, large indoor areas, and disability ramps around Tower 2 at ITS.
+
+\begin{table}[H]
+    \centering
+    \caption{Following Success Performance}
+    \label{tab:following_success_performance}
     \begin{tabular}{|c|c|c|}
         \hline 
-        \cellcolor[HTML]{000000}                        & \cellcolor[HTML]{C0C0C0} \textbf{Laptop}  & \cellcolor[HTML]{C0C0C0} \textbf{NUC}  \\ \hline
-        \cellcolor[HTML]{C0C0C0} \textbf{Average FPS} & 13.14                                      & 6.11                                    \\ \hline
-        \cellcolor[HTML]{C0C0C0} \textbf{Maximum FPS}  & 13.23                                      & 6.47                                   \\ \hline
-        \cellcolor[HTML]{C0C0C0} \textbf{Minimum FPS}   & 13.05                                      & 5.54                                    \\ \hline
+        \cellcolor[HTML]{C0C0C0}Trial & \cellcolor[HTML]{C0C0C0}Path Type & \cellcolor[HTML]{C0C0C0}Result \\ \hline
+        1 & Narrow Path & \cellcolor[HTML]{7cFF7c}Success \\ \hline
+        2 & Curved Path & \cellcolor[HTML]{7cFF7c}Success \\ \hline
+        3 & Disability Ramp & \cellcolor[HTML]{7cFF7c}Success \\ \hline
     \end{tabular}
 \end{table}
 
-\subsection{Response Time Testing}
-Based on the above output, the system's Response Time can be calculated and will be explained in Table \ref{tb:Hasil Pengujian Response Time}. The Response Time will be tested to obtain the time required for detection with the model, classification, and transmission to the ESP32 until the wheelchair motor starts moving. This test is conducted in real-time on the NUC device, with delay calculations obtained from the start of transmission until the motor stops. The inference time calculation starts from the beginning of the prediction process until the classification result is obtained. The average delay time obtained is 0.2494 seconds from the NUC test data, and the results can be seen in the table below. The average inference time obtained is 139.4899 ms or 0.1394899 seconds.
-\begin{table}[H]
-    \centering
-    \caption{Delay Results}
-    \label{tb:Hasil Pengujian Response Time}
-    \begin{tabular}{|c|c|c|}
-        \hline 
-        \cellcolor[HTML]{000000}                        & \cellcolor[HTML]{C0C0C0} \textbf{per second}  \\ \hline
-        \cellcolor[HTML]{C0C0C0} \textbf{Average Delay} & 0.249                                                                        \\ \hline
-        \cellcolor[HTML]{C0C0C0} \textbf{Maximum Delay}  & 0.379                                                                      \\ \hline
-        \cellcolor[HTML]{C0C0C0} \textbf{Minimum Delay}   & 0.145                                                                      \\ \hline
-    \end{tabular}
-\end{table}
-
-\begin{table}[H]
-    \centering
-    \caption{Inference Results}
-    \label{tb:Hasil Inference}
-    \begin{tabular}{|c|c|}
-        \hline 
-        \cellcolor[HTML]{000000}                        & \cellcolor[HTML]{C0C0C0} \textbf{per millisecond}   \\ \hline
-        \cellcolor[HTML]{C0C0C0} \textbf{Average Inference} & 139.489                                                                       \\ \hline
-        \cellcolor[HTML]{C0C0C0} \textbf{Maximum Inference}  & 181.100                                                                        \\ \hline
-        \cellcolor[HTML]{C0C0C0} \textbf{Minimum Inference}   & 123.100                                                                       \\ \hline
-    \end{tabular}
-\end{table}
-
-\subsection{Detection Distance Accuracy Testing}
-
-This test evaluates the model's ability to generate distances based on calculations on the \emph{Bounding Box} and pose. The test compares the actual object distance with the system-generated distance on an Intel NUC against a standing human. Calibration was performed at a distance of 150 cm, chosen for pose and bounding box visibility. The resulting Focal Length is 480, with K1 and K2 values of 10.922 and 24.222, respectively. These values will be used in distance accuracy tests at 150 cm, 100 cm, and 50 cm. The test aims to evaluate the system's distance measurement capability.
-
-The test was conducted using a measuring tape attached to the camera and extended towards the researcher to obtain the distance. The values were calculated to obtain the average \emph{difference} or discrepancy produced by the system against actual measurements. The following table summarizes the average distance differences for each test.
-
-\begin{table}[H]
-    \centering
-    \caption{Summary of Detection Distance Accuracy Test Results}
-    \label{tb:ringkasan_pengukuran_kesesuaian}
-    \begin{tabular}{|l|l|l|l|}
-    \hline
-    \textit{Distance} & \textit{Yolo Bbox} & \textit{MediaPipe Shoulder} & \textit{MediaPipe Hand} \\ \hline
-    150 cm & 3.2 cm & 5.06 cm & 23.8 cm \\ \hline
-    100 cm & 20.8 cm & 2.2 cm & 3.53 cm \\ \hline
-    50 cm & 69.8 cm & 14.8 cm & 1.93 cm \\ \hline
-    \end{tabular}
-\end{table}
-
-In Table \ref{tb:ringkasan_pengukuran_kesesuaian}, it is shown that at a distance of 150 cm, the largest error is in the hand landmark with a percentage of 15.86\%, and the smallest error is in the Yolo Bbox at 2.13\%. At a distance of 100 cm, the largest error is in the Yolo Bbox with a percentage of 20.8\%, and the smallest is in the shoulder landmark with a percentage of 2.2\%. At a distance of 50 cm, the largest error is in the Yolo Bbox with a percentage of 139\%, and the smallest is in the hand landmark with a percentage of 3.86\%.
-\begin{table}[H]
-    \centering
-    \caption{Obstacle Avoidance Success Performance Table}
-    \label{tb:Agungganteng}
-    \begin{tabular}{|c|c|}
-    \hline
-    Trial & Result                                                               \\ \hline
-    1         & \cellcolor[HTML]{9AFF99}Wheelchair Successfully Avoided              \\ \hline
-    2         & \cellcolor[HTML]{9AFF99}Wheelchair Successfully Avoided              \\ \hline
-    3         & \cellcolor[HTML]{9AFF99}Wheelchair Successfully Avoided              \\ \hline
-    4         & \cellcolor[HTML]{9AFF99}Wheelchair Successfully Avoided              \\ \hline
-    5         & \cellcolor[HTML]{9AFF99}Wheelchair Successfully Avoided              \\ \hline
-    6         & \cellcolor[HTML]{9AFF99}Wheelchair Successfully Avoided              \\ \hline
-    7         & \cellcolor[HTML]{9AFF99}Wheelchair Successfully Avoided              \\ \hline
-    8         & \cellcolor[HTML]{9AFF99}Wheelchair Successfully Avoided              \\ \hline
-    9         & \cellcolor[HTML]{9AFF99}Wheelchair Successfully Avoided              \\ \hline
-    10        & \cellcolor[HTML]{9AFF99}Wheelchair Successfully Avoided              \\ \hline
-    11        & \cellcolor[HTML]{9AFF99}Wheelchair Successfully Avoided              \\ \hline
-    12        & \cellcolor[HTML]{9AFF99}Wheelchair Successfully Avoided              \\ \hline
-    13        & \cellcolor[HTML]{9AFF99}Wheelchair Successfully Avoided              \\ \hline
-    14        & \cellcolor[HTML]{9AFF99}Wheelchair Successfully Avoided              \\ \hline
-    15        & \cellcolor[HTML]{9AFF99}Wheelchair Successfully Avoided              \\ \hline
-    16        & \cellcolor[HTML]{9AFF99}Wheelchair Successfully Avoided              \\ \hline
-    17        & \cellcolor[HTML]{9AFF99}Wheelchair Successfully Avoided              \\ \hline
-    18        & \cellcolor[HTML]{9AFF99}Wheelchair Successfully Avoided              \\ \hline
-    19        & \cellcolor[HTML]{9AFF99}Wheelchair Successfully Avoided              \\ \hline
-    20        & \cellcolor[HTML]{9AFF99}Wheelchair Successfully Avoided              \\ \hline
-    21        & \cellcolor[HTML]{9AFF99}Wheelchair Successfully Avoided              \\ \hline
-    22        & \cellcolor[HTML]{9AFF99}Wheelchair Successfully Avoided              \\ \hline
-    23        & \cellcolor[HTML]{9AFF99}Wheelchair Successfully Avoided              \\ \hline
-    24        & \cellcolor[HTML]{9AFF99}Wheelchair Successfully Avoided              \\ \hline
-    25        & \cellcolor[HTML]{9AFF99}Wheelchair Successfully Avoided              \\ \hline
-    26        & \cellcolor[HTML]{9AFF99}Wheelchair Successfully Avoided              \\ \hline
-    27        & \cellcolor[HTML]{9AFF99}Wheelchair Successfully Avoided              \\ \hline
-    28        & \cellcolor[HTML]{9AFF99}Wheelchair Successfully Avoided              \\ \hline
-    29        & \cellcolor[HTML]{9AFF99}Wheelchair Successfully Avoided              \\ \hline
-    30        & \cellcolor[HTML]{9AFF99}Wheelchair Successfully Avoided              \\ \hline
-    \end{tabular}
-    \end{table}
-
-In Table \ref{tb:Agungganteng}, the results show that avoidance was successful 30 times. Therefore, the success rate obtained from this test is 100\%. This result demonstrates that the system is capable of detecting and avoiding humans effectively.
-
-\subsection{Avoidance Accuracy Performance}
-The distance avoidance accuracy test measures the comparison between the system-generated avoidance distance and the real-world wheelchair avoidance distance from a human. The avoidance distance is set at 100 cm or 1 meter, meaning the wheelchair must avoid at this distance if a human is detected.
-
-\begin{table}[H]
-    \centering
-    \caption{Summary of Avoidance Accuracy Performance Results}
-    \label{tb:agungkeren}
-    \begin{tabular}{|l|l|l|}
-    \hline
-    \textit{Distance set} & \textit{Real Error} & \textit{System Error} \\ \hline
-    100 cm & 33.1 cm & 29.3 cm\\ \hline
-    \end{tabular}
-\end{table}
-
-As shown in Table \ref{tb:agungkeren}, the average real measurement error is 33.1 cm, and the average system measurement error is 29.3 cm. The results do not match the set distance of 100 cm or 1 meter and tend to decrease in accuracy.
-
-This decrease is caused by several factors, including the camera's position shaking during testing, system delays, the laptop not being charged, limiting GPU usage, and decreased laptop performance during testing due to increased laptop heat over time, resulting in lower FPS.
-
-\subsection{Avoidance Success Performance with Two Obstacles}
-
-\begin{table}[H]
-    \centering
-    \caption{Avoidance Success Performance Table with Two Obstacles}
-    \label{tb:mantapkali}
-    \begin{tabular}{|c|c|}
-    \hline
-    Trial & Result                                                  \\ \hline
-    1         & \cellcolor[HTML]{9AFF99}Wheelchair Successfully Avoided \\ \hline
-    2         & \cellcolor[HTML]{9AFF99}Wheelchair Successfully Avoided \\ \hline
-    3         & \cellcolor[HTML]{9AFF99}Wheelchair Successfully Avoided \\ \hline
-    4         & \cellcolor[HTML]{9AFF99}Wheelchair Successfully Avoided \\ \hline
-    5         & \cellcolor[HTML]{9AFF99}Wheelchair Successfully Avoided \\ \hline
-    6         & \cellcolor[HTML]{9AFF99}Wheelchair Successfully Avoided \\ \hline
-    7         & \cellcolor[HTML]{9AFF99}Wheelchair Successfully Avoided \\ \hline
-    8         & \cellcolor[HTML]{9AFF99}Wheelchair Successfully Avoided \\ \hline
-    9         & \cellcolor[HTML]{9AFF99}Wheelchair Successfully Avoided \\ \hline
-    10         & \cellcolor[HTML]{9AFF99}Wheelchair Successfully Avoided \\ \hline
-    \end{tabular}
-    \end{table}
-
-The results show that avoidance was successful 10 times. Therefore, the success rate obtained from this test is 100\%. This result demonstrates that the system can detect and avoid two human obstacles effectively.
-
-\subsection{Avoidance Success Performance with Three Obstacles}
-\begin{table}[H]
-    \centering
-    \caption{Avoidance Success Performance Table with Three Obstacles}
-    \label{tb:mantapkali2}
-    \begin{tabular}{|c|c|}
-    \hline
-    Trial & Result                                                  \\ \hline
-    1         & \cellcolor[HTML]{9AFF99}Wheelchair Successfully Avoided \\ \hline
-    2         & \cellcolor[HTML]{9AFF99}Wheelchair Successfully Avoided \\ \hline
-    3         & \cellcolor[HTML]{9AFF99}Wheelchair Successfully Avoided \\ \hline
-    4         & \cellcolor[HTML]{9AFF99}Wheelchair Successfully Avoided \\ \hline
-    5         & \cellcolor[HTML]{9AFF99}Wheelchair Successfully Avoided \\ \hline
-    \end{tabular}
-    \end{table}
-
-The results show that avoidance was successful 5 times. Therefore, the success rate obtained from this test is 100\%. This result demonstrates that the system can detect and avoid three human obstacles effectively.
-
-\subsection{Avoidance Success Performance with Four Obstacles}
-\begin{table}[H]
-    \centering
-    \caption{Avoidance Success Performance Table with Four Obstacles}
-    \label{tb:mantapkali3}
-    \begin{tabular}{|c|c|}
-    \hline
-    Trial & Result                                                  \\ \hline
-    1         & \cellcolor[HTML]{9AFF99}Wheelchair Successfully Avoided \\ \hline
-    2         & \cellcolor[HTML]{9AFF99}Wheelchair Successfully Avoided \\ \hline
-    3         & \cellcolor[HTML]{9AFF99}Wheelchair Successfully Avoided \\ \hline
-    \end{tabular}
-    \end{table}
-
-The results show that avoidance was successful 3 times. Therefore, the success rate obtained from this test is 100\%. This result demonstrates that the system can detect and avoid four human obstacles effectively.
+The results show that the system can successfully follow objects on narrow and curved paths, indicating that the system can adapt to various path types and successfully track objects in different scenarios.

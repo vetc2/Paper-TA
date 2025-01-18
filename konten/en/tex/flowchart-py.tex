@@ -1,0 +1,47 @@
+\begin{tikzpicture}[node distance=2cm]
+\node (start) [startstop] {Start};
+\node (initVars) [process, below of=start] {Initialize Variables and Hardware};
+\node (captureFrame) [io, below of=initVars] {Capture Frame from Camera};
+\node (yoloDetect) [process, below of=captureFrame] {Detect Objects Using YOLO};
+\node (A) [connector, below of=yoloDetect] {A};
+\node (C0) [connector, left of=initVars, xshift=-1.5cm, yshift=-1cm] {C};
+
+\node (A0) [connector, right of=start, xshift=4.5cm] {A};
+\node (checkBoxes) [decision, below of=A0] {Object Detected?};
+\node (processBox) [process, below of=checkBoxes] {Process Bounding Box};
+\node (trackingID) [process, below of=processBox] {Process Tracking ID};
+\node (mediapipeProcessing) [process, below of=trackingID] {Detect Pose Landmarks Using MediaPipe};
+\node (B) [connector, below of=mediapipeProcessing, xshift=1.5cm] {B};
+
+\node (B0) [connector, right of=A0, xshift=3.5cm] {B};
+\node (calcDirection) [process, below of=B0] {Calculate Direction and Distance};
+\node (controlWheelchair) [io, below of=calcDirection] {Send Data to Wheelchair};
+\node (display) [io, below of=controlWheelchair] {Draw Direction on Frame};
+\node (endLoop) [decision, below of=display, yshift=-.5cm] {Press 'q' Key?};
+\node (C) [connector, right of=endLoop, xshift=1cm, yshift=-1.5cm] {C};
+\node (end) [startstop, below of=endLoop, yshift=-1cm] {Stop};
+
+\node (searchPerson) [process, below of=mediapipeProcessing, xshift=-3cm] {Load Previous Direction and Distance};
+
+\draw [arrow] (start) -- (initVars);
+\draw [arrow] (initVars) -- (captureFrame);
+\draw [arrow] (captureFrame) -- (yoloDetect);
+\draw [arrow] (yoloDetect) -- (A);
+\draw [arrow] (C0) |- (captureFrame);
+
+\draw [arrow] (A0) -- (checkBoxes);
+\draw [arrow] (checkBoxes) -- node[anchor=west] {Yes} (processBox);
+\draw [arrow] (processBox) -- (trackingID);
+\draw [arrow] (trackingID) -- (mediapipeProcessing);
+\draw [arrow] (mediapipeProcessing) -- +(0,-2cm);
+
+\draw [arrow] (B0) -- (calcDirection);
+\draw [arrow] (calcDirection) -- (controlWheelchair);
+\draw [arrow] (controlWheelchair) -- (display);
+\draw [arrow] (display) -- (endLoop);
+\draw [arrow] (endLoop) -| node[anchor=south east] {No} (C);
+\draw [arrow] (endLoop) -- node[anchor=west] {Yes} (end);
+
+\draw [arrow] (checkBoxes) -| node[anchor=south west] {No} (searchPerson);
+\draw [arrow] (searchPerson) -- (B);
+\end{tikzpicture}

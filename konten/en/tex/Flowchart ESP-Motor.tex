@@ -1,0 +1,32 @@
+\begin{tikzpicture}[node distance=2cm]
+% Nodes
+\node (start) [startstop] {Start};
+\node (init) [process, below of=start] {Initialize Arduino, WiFi, PWM dan Pin};
+\node (connect) [process, below of=init] {Connect Serial WiFi and Server};
+\node (setup) [process, below of=connect] {Setup PinMode, ledc-Setup, ledcAttachPin};
+\node (A) [connector, below of=setup, xshift=3cm, yshift=-.5cm] {A};
+
+\node (A0) [connector, right of=start, xshift=4cm] {A};
+\node (connected?) [decision, below of=A0, text width=2cm] {Device Connected?};
+\node (msg?) [decision, below of=connected?, yshift=-.5cm] {Message Received?};
+
+\node (stop) [startstop, right of=connected?, xshift=3cm] {Stop};
+\node (readstr) [process, right of=msg?, xshift=3cm] {Read String until '\textbackslash n'};
+\node (extract) [process, below of=readstr] {Ekstrak String into Direction and Speed};
+\node (move) [io, below of=msg?, text width=3cm] {Move Wheelchair Motor};
+
+% Arrows
+\draw [arrow] (start) -- (init);
+\draw [arrow] (init) -- (connect);
+\draw [arrow] (connect) -- (setup);
+\draw [arrow] (setup) |- ++(0,-1.55cm) -| (A);
+
+\draw [arrow] (A0) -- (connected?);
+\draw [arrow] (connected?) -- node[anchor=east] {Yes} (msg?);
+\draw [arrow] (connected?) -- node[anchor=south] {No} (stop);
+\draw [arrow] (msg?) -- node[anchor=south] {Yes} (readstr);
+\draw [arrow] (msg?.west) -| node[anchor=north west] {No} (A);
+\draw [arrow] (readstr) -- (extract);
+\draw [arrow] (extract) -- (move);
+\draw [arrow] (move.south) |- ++(0,-.5) -| (A);
+\end{tikzpicture}
